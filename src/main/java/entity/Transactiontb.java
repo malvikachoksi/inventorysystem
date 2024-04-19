@@ -12,7 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,8 +32,6 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Transactiontb.findAll", query = "SELECT t FROM Transactiontb t"),
     @NamedQuery(name = "Transactiontb.findByTransactionId", query = "SELECT t FROM Transactiontb t WHERE t.transactionId = :transactionId"),
-    @NamedQuery(name = "Transactiontb.findByDiamonadId", query = "SELECT t FROM Transactiontb t WHERE t.diamonadId = :diamonadId"),
-    @NamedQuery(name = "Transactiontb.findByUserId", query = "SELECT t FROM Transactiontb t WHERE t.userId = :userId"),
     @NamedQuery(name = "Transactiontb.findByTransactionDate", query = "SELECT t FROM Transactiontb t WHERE t.transactionDate = :transactionDate")})
 public class Transactiontb implements Serializable {
 
@@ -43,14 +43,6 @@ public class Transactiontb implements Serializable {
     private Integer transactionId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "diamonad_id")
-    private int diamonadId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "user_id")
-    private int userId;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "transaction_date")
     @Temporal(TemporalType.DATE)
     private Date transactionDate;
@@ -60,6 +52,12 @@ public class Transactiontb implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "transaction_type")
     private String transactionType;
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @ManyToOne(optional = false)
+    private Usertb userId;
+    @JoinColumn(name = "diamonad_id", referencedColumnName = "diamond_id")
+    @ManyToOne(optional = false)
+    private Diamondstb diamonadId;
 
     public Transactiontb() {
     }
@@ -68,10 +66,8 @@ public class Transactiontb implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public Transactiontb(Integer transactionId, int diamonadId, int userId, Date transactionDate, String transactionType) {
+    public Transactiontb(Integer transactionId, Date transactionDate, String transactionType) {
         this.transactionId = transactionId;
-        this.diamonadId = diamonadId;
-        this.userId = userId;
         this.transactionDate = transactionDate;
         this.transactionType = transactionType;
     }
@@ -82,22 +78,6 @@ public class Transactiontb implements Serializable {
 
     public void setTransactionId(Integer transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public int getDiamonadId() {
-        return diamonadId;
-    }
-
-    public void setDiamonadId(int diamonadId) {
-        this.diamonadId = diamonadId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public Date getTransactionDate() {
@@ -114,6 +94,22 @@ public class Transactiontb implements Serializable {
 
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public Usertb getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Usertb userId) {
+        this.userId = userId;
+    }
+
+    public Diamondstb getDiamonadId() {
+        return diamonadId;
+    }
+
+    public void setDiamonadId(Diamondstb diamonadId) {
+        this.diamonadId = diamonadId;
     }
 
     @Override

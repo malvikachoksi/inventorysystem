@@ -5,6 +5,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -83,6 +85,8 @@ public class Diamondstb implements Serializable {
     @JoinColumn(name = "fluorescence_id", referencedColumnName = "fluoresence_id")
     @ManyToOne(optional = false)
     private Fluoresencestb fluorescenceId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "diamonadId")
+    private Collection<Transactiontb> transactiontbCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "diamondstb")
     private Symmetriestb symmetriestb;
 
@@ -204,6 +208,14 @@ public class Diamondstb implements Serializable {
 
     public void setFluorescenceId(Fluoresencestb fluorescenceId) {
         this.fluorescenceId = fluorescenceId;
+    }
+
+    public Collection<Transactiontb> getTransactiontbCollection() {
+        return transactiontbCollection;
+    }
+
+    public void setTransactiontbCollection(Collection<Transactiontb> transactiontbCollection) {
+        this.transactiontbCollection = transactiontbCollection;
     }
 
     public Symmetriestb getSymmetriestb() {

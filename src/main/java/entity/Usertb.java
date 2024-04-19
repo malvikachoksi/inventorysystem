@@ -99,6 +99,8 @@ public class Usertb implements Serializable {
     private Collection<Extrainquirytb> extrainquirytbCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
     private Collection<Grouptb> grouptbCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Transactiontb> transactiontbCollection;
 
     public Usertb() {
     }
@@ -231,6 +233,14 @@ public class Usertb implements Serializable {
 
     public void setGrouptbCollection(Collection<Grouptb> grouptbCollection) {
         this.grouptbCollection = grouptbCollection;
+    }
+
+    public Collection<Transactiontb> getTransactiontbCollection() {
+        return transactiontbCollection;
+    }
+
+    public void setTransactiontbCollection(Collection<Transactiontb> transactiontbCollection) {
+        this.transactiontbCollection = transactiontbCollection;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.mycompany.inventory_system.resources;
 
+import Helper.customResponse;
 import ejb.DiamondSessionBeanLocal;
 import entity.Categorytb;
 import entity.Claritiestb;
@@ -37,15 +38,18 @@ public class JavaEE8Resource {
     @Path("/get-category")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Categorytb> getallcategory() {
-        return ejb.get_all_category();
+      return   ejb.get_all_category();
+//         return Response.ok()
+//        return Response.status(Response.Status.NO_CONTENT).entity(ejb);
     }
 
     @POST
     @Path("/add-category/{catename}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void category_add(@PathParam("catename") String catename) {
+    public Response category_add(@PathParam("catename") String catename) {
         System.err.println("add -category" + catename);
         ejb.insert_category(catename);
+        return Response.status(Response.Status.CREATED).entity(new customResponse("Success","Inserted Successfully",true,ejb.get_all_category())).build();
     }
 
     @DELETE

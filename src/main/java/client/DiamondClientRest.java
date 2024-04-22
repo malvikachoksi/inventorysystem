@@ -32,7 +32,7 @@ public class DiamondClientRest {
     }
 
     public void cut_update(Object requestEntity, String cut_id, String cut_name) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("update-cut/{0}/{1}", new Object[]{cut_id, cut_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+        webTarget.path(java.text.MessageFormat.format("update-cuts/{0}/{1}", new Object[]{cut_id, cut_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public <T> T getallclarities(Class<T> responseType) throws ClientErrorException {
@@ -48,7 +48,7 @@ public class DiamondClientRest {
     }
 
     public void cut_delete(String cut_id) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("delete-cut/{0}", new Object[]{cut_id})).request().delete();
+        webTarget.path(java.text.MessageFormat.format("delete-cuts/{0}", new Object[]{cut_id})).request().delete();
     }
 
 //    public <T> T ping(Class<T> responseType) throws ClientErrorException {

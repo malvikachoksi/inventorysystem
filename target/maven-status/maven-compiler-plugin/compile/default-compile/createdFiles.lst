@@ -1,4 +1,3 @@
-entity\Statetb.class
 com\mycompany\inventory_system\resources\JavaEE8Resource.class
 entity\Cutstb.class
 entity\Categorytb.class
@@ -11,8 +10,6 @@ entity\Inquirytb.class
 entity\Shapetb.class
 entity\Usertb.class
 com\mycompany\inventory_system\JAXRSConfiguration.class
-entity\Citytb.class
-entity\Countrytb.class
 entity\Grouptb.class
 entity\Companiestb.class
 entity\Laboratoriestb.class

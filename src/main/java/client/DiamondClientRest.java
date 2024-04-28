@@ -7,6 +7,7 @@ package client;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
 /**
  * Jersey REST client generated for REST resource:JavaEE8Resource [rest]<br>
@@ -35,12 +36,6 @@ public class DiamondClientRest {
         webTarget.path(java.text.MessageFormat.format("update-cuts/{0}/{1}", new Object[]{cut_id, cut_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public <T> T getallclarities(Class<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("get-clarities");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
     public <T> T getallcuts(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("get-cuts");
@@ -56,18 +51,6 @@ public class DiamondClientRest {
 //        return resource.get(responseType);
 //    }
 
-    public void category_update(Object requestEntity, String cate_id, String cate_name) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("update-category/{0}/{1}", new Object[]{cate_id, cate_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public void clarities_update(Object requestEntity, String clarities_id, String clarities_name) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("update-clarities/{0}/{1}", new Object[]{clarities_id, clarities_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public void color_delete(String color_id) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("delete-color/{0}", new Object[]{color_id})).request().delete();
-    }
-
     public void clarities_add(Object requestEntity, String clarities_name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("add-clarities/{0}", new Object[]{clarities_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
@@ -76,26 +59,46 @@ public class DiamondClientRest {
         webTarget.path(java.text.MessageFormat.format("add-fluoresence/{0}", new Object[]{fluoresence_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public void category_add(Object requestEntity, String catename) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("add-category/{0}", new Object[]{catename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    public <T> T getallcompnay(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-compnay");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void clarities_delete(String clarities_id) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("delete-clarities/{0}", new Object[]{clarities_id})).request().delete();
+    public Response category_add(Object requestEntity, String catename) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("add-category/{0}", new Object[]{catename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), Response.class);
+    }
+
+    public void shape_add(Object requestEntity, String shapename) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-cshape/{0}", new Object[]{shapename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void color_add(Object requestEntity, String color_name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("add-color/{0}", new Object[]{color_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public <T> T getallcategory(Class<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("get-category");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    public void synmetries_add(Object requestEntity, String synmetriesname) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-synmetries/{0}", new Object[]{synmetriesname})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void laboratories_update(Object requestEntity, String laboratories_id, String laboratories_name) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("update-laboratories/{0}/{1}", new Object[]{laboratories_id, laboratories_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void polishe_add(Object requestEntity, String polishename) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-polishe/{0}", new Object[]{polishename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void fluoresence_delete(String fluoresence_id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("delete-fluoresence/{0}", new Object[]{fluoresence_id})).request().delete();
+    }
+
+    public void polishe_delete(String polishe_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-polishe/{0}", new Object[]{polishe_id})).request().delete();
+    }
+
+    public void laboratories_add(Object requestEntity, String laboratoriesname) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-laboratories/{0}", new Object[]{laboratoriesname})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void cut_add(Object requestEntity, String cut_name) throws ClientErrorException {
@@ -108,6 +111,10 @@ public class DiamondClientRest {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
+    public void polishe_update(Object requestEntity, String polishe_id, String polishe_name) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("update-polishe/{0}/{1}", new Object[]{polishe_id, polishe_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
     public <T> T getallcolor(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("get-colors");
@@ -118,12 +125,96 @@ public class DiamondClientRest {
         webTarget.path(java.text.MessageFormat.format("update-fluoresence/{0}/{1}", new Object[]{fluoresence_id, fluoresence_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public void category_delete(String cate_id) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("delete-category/{0}", new Object[]{cate_id})).request().delete();
-    }
-
     public void color_update(Object requestEntity, String color__id, String color_name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("update-color/{0}/{1}", new Object[]{color__id, color_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void laboratories_delete(String laboratories_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-laboratories/{0}", new Object[]{laboratories_id})).request().delete();
+    }
+
+    public void compnay_add(Object requestEntity, String compnayname) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-compnay/{0}", new Object[]{compnayname})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T getallclarities(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-clarities");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void category_update(Object requestEntity, String cate_id, String cate_name) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("update-category/{0}/{1}", new Object[]{cate_id, cate_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void clarities_update(Object requestEntity, String clarities_id, String clarities_name) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("update-clarities/{0}/{1}", new Object[]{clarities_id, clarities_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void shape_update(Object requestEntity, String shape_id, String shape_name) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("update-shape/{0}/{1}", new Object[]{shape_id, shape_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void color_delete(String color_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-color/{0}", new Object[]{color_id})).request().delete();
+    }
+
+    public <T> T getallsynmetries(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-synmetries");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void synmetries_delete(String synmetries_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-synmetries/{0}", new Object[]{synmetries_id})).request().delete();
+    }
+
+    public void clarities_delete(String clarities_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-clarities/{0}", new Object[]{clarities_id})).request().delete();
+    }
+
+    public <T> T getallpolishe(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-polishe");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void shape_delete(String shape_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-shape/{0}", new Object[]{shape_id})).request().delete();
+    }
+
+    public <T> T getalllaboratories(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-laboratories");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void compnay_update(Object requestEntity, String compnay_id, String compnay_name) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("update-compnay/{0}/{1}", new Object[]{compnay_id, compnay_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void compnay_delete(String compnay_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-compnay/{0}", new Object[]{compnay_id})).request().delete();
+    }
+
+    public <T> T getallshape(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-shape");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getallcategory(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-category");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void synmetries_update(Object requestEntity, String synmetries_id, String synmetries_name) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("update-synmetries/{0}/{1}", new Object[]{synmetries_id, synmetries_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void category_delete(String cate_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-category/{0}", new Object[]{cate_id})).request().delete();
     }
 
     public void close() {

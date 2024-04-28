@@ -5,8 +5,13 @@ import ejb.DiamondSessionBeanLocal;
 import entity.Categorytb;
 import entity.Claritiestb;
 import entity.Colortb;
+import entity.Companiestb;
 import entity.Cutstb;
 import entity.Fluoresencestb;
+import entity.Laboratoriestb;
+import entity.Polishestb;
+import entity.Shapetb;
+import entity.Symmetriestb;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -38,7 +43,7 @@ public class JavaEE8Resource {
     @Path("/get-category")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Categorytb> getallcategory() {
-      return   ejb.get_all_category();
+        return ejb.get_all_category();
 //         return Response.ok()
 //        return Response.status(Response.Status.NO_CONTENT).entity(ejb);
     }
@@ -49,7 +54,7 @@ public class JavaEE8Resource {
     public Response category_add(@PathParam("catename") String catename) {
         System.err.println("add -category" + catename);
         ejb.insert_category(catename);
-        return Response.status(Response.Status.CREATED).entity(new customResponse("Success","Inserted Successfully",true,ejb.get_all_category())).build();
+        return Response.status(Response.Status.CREATED).entity(new customResponse("Success", "Inserted Successfully", true, ejb.get_all_category())).build();
     }
 
     @DELETE
@@ -78,7 +83,7 @@ public class JavaEE8Resource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void clarities_add(@PathParam("clarities_name") String clarities_name) {
         System.err.println("add -category" + clarities_name);
-         ejb.clarities_insert(clarities_name);
+        ejb.clarities_insert(clarities_name);
     }
 
     @DELETE
@@ -180,11 +185,148 @@ public class JavaEE8Resource {
     public void fluoresence_update(@PathParam("fluoresence_id") Integer fluoresence_id, @PathParam("fluoresence_name") String fluoresence_name) {
         ejb.fluoresence_update(fluoresence_id, fluoresence_name);
     }
-    
-      //    -------------------------LABORATORIES TABLE------------------------------
+
+    //    -------------------------LABORATORIES TABLE------------------------------
+    @GET
+    @Path("/get-laboratories")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Laboratoriestb> getalllaboratories() {
+        return ejb.laboratoriestbs_getall();
+    }
+
+    @POST
+    @Path("/add-laboratories/{laboratoriesname}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void laboratories_add(@PathParam("laboratoriesname") String laboratoriesname) {
+        ejb.laboratories_insert(laboratoriesname);
+    }
+
+    @DELETE
+    @Path("/delete-laboratories/{laboratories_id}")
+    public void laboratories_delete(@PathParam("laboratories_id") Integer laboratories_id) {
+        ejb.laboratories_delete(laboratories_id);
+    }
+
+    @PUT
+    @Path("/update-laboratories/{laboratories_id}/{laboratories_name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void laboratories_update(@PathParam("laboratories_id") Integer laboratories_id, @PathParam("laboratories_name") String laboratories_name) {
+        ejb.laboratories_update(laboratories_id, laboratories_name);
+    }
+
     //    -------------------------POLISHES TABLE------------------------------
+    @GET
+    @Path("/get-polishe")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Polishestb> getallpolishe() {
+        return ejb.polishes_getall();
+    }
+
+    @POST
+    @Path("/add-polishe/{polishename}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void polishe_add(@PathParam("polishename") String polishename) {
+        System.err.println("add -category" + polishename);
+        ejb.polishes_insert(polishename);
+    }
+
+    @DELETE
+    @Path("/delete-polishe/{polishe_id}")
+    public void polishe_delete(@PathParam("polishe_id") Integer polishe_id) {
+        ejb.polishes_delete(polishe_id);
+    }
+
+    @PUT
+    @Path("/update-polishe/{polishe_id}/{polishe_name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void polishe_update(@PathParam("polishe_id") Integer polishe_id, @PathParam("polishe_name") String polishe_name) {
+        ejb.polishes_update(polishe_id, polishe_name);
+    }
+
     //    -------------------------SHAPE TABLE------------------------------
+    @GET
+    @Path("/get-shape")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Shapetb> getallshape() {
+        return ejb.shape_getall();
+    }
+
+    @POST
+    @Path("/add-cshape/{shapename}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void shape_add(@PathParam("shapename") String shapename) {
+        ejb.shape_insert(shapename);
+    }
+
+    @DELETE
+    @Path("/delete-shape/{shape_id}")
+    public void shape_delete(@PathParam("shape_id") Integer shape_id) {
+        ejb.shape_delete(shape_id);
+    }
+
+    @PUT
+    @Path("/update-shape/{shape_id}/{shape_name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void shape_update(@PathParam("shape_id") Integer shape_id, @PathParam("shape_name") String shape_name) {
+        ejb.shape_update(shape_id, shape_name);
+    }
+
     //    -------------------------SYNMETRIES TABLE------------------------------
+    
+    @GET
+    @Path("/get-synmetries")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Symmetriestb> getallsynmetries() {
+        return ejb.symmetrie_getall();
+    }
+
+    @POST
+    @Path("/add-synmetries/{synmetriesname}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void synmetries_add(@PathParam("synmetriesname") String synmetriesname) {
+        ejb.symmetrie_insert(synmetriesname);
+    }
+
+    @DELETE
+    @Path("/delete-synmetries/{synmetries_id}")
+    public void synmetries_delete(@PathParam("synmetries_id") Integer synmetries_id) {
+        ejb.symmetrie_delete(synmetries_id);
+    }
+
+    @PUT
+    @Path("/update-synmetries/{synmetries_id}/{synmetries_name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void synmetries_update(@PathParam("synmetries_id") Integer synmetries_id, @PathParam("synmetries_name") String synmetries_name) {
+        ejb.symmetrie_update(synmetries_id, synmetries_name);
+    }
+
     //    -------------------------COMPANY TABLE------------------------------
+    
+    @GET
+    @Path("/get-compnay")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Companiestb> getallcompnay() {
+        return ejb.companie_getall();
+    }
+
+    @POST
+    @Path("/add-compnay/{compnayname}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void compnay_add(@PathParam("compnayname") String compnayname) {
+        ejb.companie_insert(compnayname);
+    }
+
+    @DELETE
+    @Path("/delete-compnay/{compnay_id}")
+    public void compnay_delete(@PathParam("compnay_id") Integer compnay_id) {
+        ejb.companie_delete(compnay_id);
+    }
+
+    @PUT
+    @Path("/update-compnay/{compnay_id}/{compnay_name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void compnay_update(@PathParam("compnay_id") Integer compnay_id, @PathParam("compnay_name") String compnay_name) {
+        ejb.color_update(compnay_id, compnay_name);
+    }
 
 }

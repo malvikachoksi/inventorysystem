@@ -42,7 +42,7 @@ public class Companiestb implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "compnay_name")
-    private int compnayName;
+    private String compnayName;
     @Basic(optional = false)
     @NotNull
     @Column(name = "state_id")
@@ -61,7 +61,7 @@ public class Companiestb implements Serializable {
         this.compnayId = compnayId;
     }
 
-    public Companiestb(Integer compnayId, int compnayName, int stateId, int cityId) {
+    public Companiestb(Integer compnayId, String compnayName, int stateId, int cityId) {
         this.compnayId = compnayId;
         this.compnayName = compnayName;
         this.stateId = stateId;
@@ -76,11 +76,12 @@ public class Companiestb implements Serializable {
         this.compnayId = compnayId;
     }
 
-    public int getCompnayName() {
+    
+    public String getCompnayName() {
         return compnayName;
     }
 
-    public void setCompnayName(int compnayName) {
+    public void setCompnayName(String compnayName) {
         this.compnayName = compnayName;
     }
 

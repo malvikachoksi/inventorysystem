@@ -7,8 +7,13 @@ package ejb;
 import entity.Categorytb;
 import entity.Claritiestb;
 import entity.Colortb;
+import entity.Companiestb;
 import entity.Cutstb;
 import entity.Fluoresencestb;
+import entity.Laboratoriestb;
+import entity.Polishestb;
+import entity.Shapetb;
+import entity.Symmetriestb;
 import java.util.Collection;
 import javax.ejb.Local;
 
@@ -62,10 +67,50 @@ public interface DiamondSessionBeanLocal {
     public void fluoresence_delete(Integer fluoresence_id);
 
     public void fluoresence_update(Integer fluoresence_id, String fluoresence_name);
+
     //    -------------------------LABORATORIES TABLE------------------------------
+    public Collection<Laboratoriestb> laboratoriestbs_getall();
+
+    public void laboratories_insert(String laboratories_name);
+
+    public void laboratories_delete(Integer laboratories_id);
+
+    public void laboratories_update(Integer laboratories_id, String laboratories_name);
+
     //    -------------------------POLISHES TABLE------------------------------
+    public Collection<Polishestb> polishes_getall();
+
+    public void polishes_insert(String polishes_name);
+
+    public void polishes_delete(Integer polishes_id);
+
+    public void polishes_update(Integer polishes_id, String polishes_name);
     //    -------------------------SHAPE TABLE------------------------------
+
+    public Collection<Shapetb> shape_getall();
+
+    public void shape_insert(String shape_name);
+
+    public void shape_delete(Integer shape_id);
+
+    public void shape_update(Integer shape_id, String shape_name);
+
     //    -------------------------SYNMETRIES TABLE------------------------------
+    public Collection<Symmetriestb> symmetrie_getall();
+
+    public void symmetrie_insert(String symmetrie_name);
+
+    public void symmetrie_delete(Integer symmetrie_id);
+
+    public void symmetrie_update(Integer symmetrie_id, String symmetrie_name);
     //    -------------------------COMPANY TABLE------------------------------
+
+    public Collection<Companiestb> companie_getall();
+
+    public void companie_insert(String companie_name);
+
+    public void companie_delete(Integer companie_id);
+
+    public void companie_update(Integer companie_id, String companie_name);
 
 }

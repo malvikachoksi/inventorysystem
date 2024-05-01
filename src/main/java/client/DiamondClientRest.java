@@ -70,7 +70,11 @@ public class DiamondClientRest {
     }
 
     public void shape_add(Object requestEntity, String shapename) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("add-cshape/{0}", new Object[]{shapename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+        webTarget.path(java.text.MessageFormat.format("add-shape/{0}", new Object[]{shapename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public Response diamond_add(String uid, String sysmmetryid, String weigth, String price, String avalibility) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("add-diamond/{0}/{1}/{2}/{3}/{4}", new Object[]{uid, sysmmetryid, weigth, price, avalibility})).request().post(null, Response.class);
     }
 
     public void color_add(Object requestEntity, String color_name) throws ClientErrorException {
@@ -143,6 +147,12 @@ public class DiamondClientRest {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
+    public <T> T getalldiamonds(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-diamond");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public void category_update(Object requestEntity, String cate_id, String cate_name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("update-category/{0}/{1}", new Object[]{cate_id, cate_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
@@ -163,6 +173,10 @@ public class DiamondClientRest {
         WebTarget resource = webTarget;
         resource = resource.path("get-synmetries");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void diamond_delete(String diamond_id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("delete-diamond/{0}", new Object[]{diamond_id})).request().delete();
     }
 
     public void synmetries_delete(String synmetries_id) throws ClientErrorException {
@@ -207,6 +221,10 @@ public class DiamondClientRest {
         WebTarget resource = webTarget;
         resource = resource.path("get-category");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void diamond_add2(String uid, String compnyid, String shapeid, String colourid, String clarityid, String cutsid, String polishid, String fluorescenceId, String sysmmetryid, String weigth, String price, String avalibility) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-diamond/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}", new Object[]{uid, compnyid, shapeid, colourid, clarityid, cutsid, polishid, fluorescenceId, sysmmetryid, weigth, price, avalibility})).request().post(null);
     }
 
     public void synmetries_update(Object requestEntity, String synmetries_id, String synmetries_name) throws ClientErrorException {

@@ -7,6 +7,7 @@ import entity.Claritiestb;
 import entity.Colortb;
 import entity.Companiestb;
 import entity.Cutstb;
+import entity.Diamondstb;
 import entity.Fluoresencestb;
 import entity.Laboratoriestb;
 import entity.Polishestb;
@@ -32,13 +33,63 @@ public class JavaEE8Resource {
     DiamondSessionBeanLocal ejb;
 
     @GET
+        @Produces(MediaType.APPLICATION_JSON)
     public Response ping() {
         return Response
                 .ok("ping")
                 .build();
     }
-    //    ------------------------------------CATEGORY  TABLE----------------------------------------------------------
 
+    //    ------------------------------------DIAMOND  TABLE----------------------------------------------------------
+    @GET
+    @Path("/get-diamond")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Diamondstb> getalldiamonds() {
+        System.err.println("log get diamond");
+        return ejb.diamonds_getall();
+//         return Response.ok()
+//        return Response.status(Response.Status.NO_CONTENT).entity(ejb);
+    }
+
+    @DELETE
+    @Path("/delete-diamond/{diamond_id}")
+    public void diamond_delete(@PathParam("diamond_id") Integer diamond_id) {
+        System.err.println("----Diamond Remove Id in REST API ----" + diamond_id);
+        ejb.delete_diamonds(diamond_id);
+    }
+
+    @POST
+    @Path("/add-diamond/{uid}/{sysmmetryid}/{weigth}/{price}/{avalibility}")
+    public Response diamond_add(@PathParam("uid") Integer userId,
+            @PathParam("sysmmetryid") Integer symmetryId, @PathParam("weight") float weigth,
+            @PathParam("price") float price, @PathParam("avalibility") Boolean availability) {
+        System.err.println("add -diamond----------rest-----" + userId + weigth);
+        ejb.insert_diamonds(userId, symmetryId, weigth, price, availability);
+        return Response.status(Response.Status.CREATED).entity(new customResponse("Success", "Inserted Successfully", true, ejb.diamonds_getall())).build();
+    }
+
+    
+    @POST
+    @Path("/add-diamond/{uid}/{compnyid}/{shapeid}/{colourid}/{clarityid}/{cutsid}/{polishid}/{fluorescenceId}/{sysmmetryid}/{weigth}/{price}/{avalibility}")
+    public void diamond_add2(@PathParam("uid") Integer userId, @PathParam("compnyid") Integer compayId,
+            @PathParam("shapeid") Integer shapeId, @PathParam("colourid") Integer colourId,
+            @PathParam("clarityid") Integer clarityId, @PathParam("cutsid") Integer cutsId, @PathParam("polishid") Integer polishId,
+            @PathParam("fluorescenceId") Integer fluorescenceId, @PathParam("sysmmetryid") Integer symmetryId, @PathParam("weigth") float weigth,
+            @PathParam("price") float price, @PathParam("avalibility") Boolean availability) {
+        System.err.println("add -diamond 22 ------rest api colour -------" + userId + colourId);
+        System.err.println("add -diamond 22 ------rest api compnay-------" + userId + compayId);
+        System.err.println("add -diamond 22 ------rest api clarity-------" + userId + clarityId);
+        System.err.println("add -diamond 22 ------rest api cuts-------" + userId + cutsId);
+        System.err.println("add -diamond 22 ------rest api polish-------"  + polishId);
+        System.err.println("add -diamond 22 ------rest api fluorescenceId-------" +  fluorescenceId);
+        System.err.println("add -diamond 22 ------rest api symmetryId-------" +  symmetryId);
+        System.err.println("add -diamond 22 ------rest api wiegth-------" +weigth);
+        System.err.println("add -diamond 22 ------rest api shape-------" +shapeId);
+                System.err.println("Find Opration--weigth---"+weigth + "----price-----"+price+ "-----avaliboility----"+availability);
+        ejb.insert_diamonds2(userId, compayId, shapeId, colourId, clarityId, cutsId, polishId, fluorescenceId, symmetryId,weigth, price, availability);
+//        return Response.status(Response.Status.CREATED).entity(new customResponse("Success", "Inserted Successfully", true, ejb.diamonds_getall())).build();
+    }
+    //    ------------------------------------CATEGORY  TABLE----------------------------------------------------------
     @GET
     @Path("/get-category")
     @Produces(MediaType.APPLICATION_JSON)
@@ -252,7 +303,7 @@ public class JavaEE8Resource {
     }
 
     @POST
-    @Path("/add-cshape/{shapename}")
+    @Path("/add-shape/{shapename}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void shape_add(@PathParam("shapename") String shapename) {
         ejb.shape_insert(shapename);
@@ -272,7 +323,6 @@ public class JavaEE8Resource {
     }
 
     //    -------------------------SYNMETRIES TABLE------------------------------
-    
     @GET
     @Path("/get-synmetries")
     @Produces(MediaType.APPLICATION_JSON)
@@ -301,7 +351,6 @@ public class JavaEE8Resource {
     }
 
     //    -------------------------COMPANY TABLE------------------------------
-    
     @GET
     @Path("/get-compnay")
     @Produces(MediaType.APPLICATION_JSON)

@@ -9,6 +9,7 @@ import entity.Claritiestb;
 import entity.Colortb;
 import entity.Companiestb;
 import entity.Cutstb;
+import entity.Diamondstb;
 import entity.Fluoresencestb;
 import entity.Laboratoriestb;
 import entity.Polishestb;
@@ -20,9 +21,16 @@ import javax.ejb.Local;
 @Local
 public interface DiamondSessionBeanLocal {
 
-//    here created all method of the table to perfome the curd opertion
-//    total 10 table is there for the opration
-//    insert,update,delete,select
+//    ----------------------Diamond TABLE--------------------------------
+    public Collection<Diamondstb> diamonds_getall();
+    
+     void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability);
+    public void insert_diamonds(Integer userId, Integer symmetryId, Float weigth, Float price, Boolean availability);
+//
+    public void delete_diamonds(Integer diamondId);
+//
+//    public void update_diamonds(Integer diamondId, Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, float weigth, float price, Boolean availability);
+
 //    ----------------------CATEGORY TABLE--------------------------------
     public Collection<Categorytb> get_all_category();
 

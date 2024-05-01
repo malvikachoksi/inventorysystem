@@ -9,11 +9,13 @@ import entity.Claritiestb;
 import entity.Colortb;
 import entity.Companiestb;
 import entity.Cutstb;
+import entity.Diamondstb;
 import entity.Fluoresencestb;
 import entity.Laboratoriestb;
 import entity.Polishestb;
 import entity.Shapetb;
 import entity.Symmetriestb;
+import entity.Usertb;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -287,4 +289,209 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         c.setCompnayName(companie_name);
         em.merge(c);
     }
+    //    ------------------------------------DIAMOND  TABLE----------------------------------------------------------
+
+    @Override
+    public Collection<Diamondstb> diamonds_getall() {
+        return em.createNamedQuery("Diamondstb.findAll").getResultList();
+    }
+
+    @Override
+    public void delete_diamonds(Integer diamondId) {
+        Diamondstb diamondstbId = em.find(Diamondstb.class, diamondId);
+        System.err.println("-------------Diamond Delete Ejb Sucessfuulyy---------------");
+        em.remove(diamondstbId);
+    }
+
+    @Override
+    public void insert_diamonds(Integer userId, Integer symmetryId, Float weigth, Float price, Boolean availability) {
+//        Usertb usertbId=em.find(Usertb.class, userId);
+//        Companiestb companiestbId = em.find(Companiestb.class, compayId);
+//        Shapetb shapetbId = em.find(Shapetb.class, shapeId);
+//        Colortb colortbId = em.find(Colortb.class, colourId);
+//        Claritiestb claritiestbId = em.find(Claritiestb.class, clarityId);
+//        Cutstb cutstbId = em.find(Cutstb.class, cutsId);
+//        Polishestb polishestbId = em.find(Polishestb.class, polishId);
+//        Fluoresencestb fluoresencestbId = em.find(Fluoresencestb.class, fluorescenceId);
+        Symmetriestb symmetriestbId = em.find(Symmetriestb.class, symmetryId);
+//
+        Diamondstb d = new Diamondstb();
+        d.setUserId(userId);
+//        d.setCompnayId(companiestbId);
+//        d.setShapeId(shapetbId);
+//        d.setColourId(colortbId);
+//        d.setClarityId(claritiestbId);
+//        d.setCutId(cutstbId);
+//        d.setPolishId(polishestbId);
+//        d.setFluorescenceId(fluoresencestbId);
+        d.setSymmetriestb(symmetriestbId);
+        d.setWeigth(weigth);
+        d.setPrice(price);
+        d.setAvailability(availability);
+        System.err.println("=============persistes=============" + userId + symmetriestbId + weigth + price + availability);
+
+//        companiestbId.getDiamondstbCollection().add(d);
+//        shapetbId.getDiamondstbCollection().add(d);
+//        colortbId.getDiamondstbCollection().add(d);
+//        claritiestbId.getDiamondstbCollection().add(d);
+//        cutstbId.getDiamondstbCollection().add(d);
+//        polishestbId.getDiamondstbCollection().add(d);
+//        fluoresencestbId.getDiamondstbCollection().add(d);
+        symmetriestbId.getDiamondstb();
+//
+        em.persist(d);
+        em.merge(symmetriestbId);
+        System.err.println("=============persistes=============");
+//        em.merge(companiestbId);
+//        em.merge(shapetbId);
+//        em.merge(colortbId);
+//        em.merge(claritiestbId);
+//        em.merge(cutstbId);
+//        em.merge(fluoresencestbId);
+        em.merge(symmetriestbId);
+        System.err.println("=============marge=============");
+        System.err.println("---------------------Diamond Add sucessfully --------------");
+
+    }
+
+    @Override
+    public void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability) {
+        System.err.println("----------Ejb--------Calll---------1---------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+        Companiestb companiestbId = null;
+        Shapetb shapetbId = null;
+        Colortb colortbId = null;
+        Claritiestb claritiestbId = null;
+        Cutstb cutstbId = null;
+        Polishestb polishestbId = null;
+        Fluoresencestb fluoresencestbId = null;
+//        Symmetriestb symmetriestbId = null;
+
+        if (cutsId != null) {
+            System.err.println("Id cuts---------" + cutsId);
+            cutstbId = em.find(Cutstb.class, cutsId);
+        } else {
+            System.err.println("cuts Table Id null");
+            // Handle the case when symmetryId is null
+        }
+
+        if (compayId != null) {
+            System.err.println("Id compnay---------" + compayId);
+            companiestbId = em.find(Companiestb.class, compayId);
+        } else {
+            System.err.println("compnay Table Id null");
+            // Handle the case when symmetryId is null
+        }
+
+        if (shapeId != null) {
+            shapetbId = em.find(Shapetb.class, shapeId);
+        } else {
+            System.err.println("shape Table Id null");
+
+            // Handle the case when symmetryId is null
+        }
+
+        if (colourId != null) {
+            colortbId = em.find(Colortb.class, colourId);
+        } else {
+            System.err.println("color Table Id null");
+            // Handle the case when symmetryId is null
+        }
+
+        if (clarityId != null) {
+            claritiestbId = em.find(Claritiestb.class, clarityId);
+        } else {
+            System.err.println("clarity Table Id null");
+
+            // Handle the case when symmetryId is null
+        }
+        if (fluorescenceId != null) {
+            fluoresencestbId = em.find(Fluoresencestb.class, fluorescenceId);
+        } else {
+            System.err.println("fluoresencestbId Table Id null");
+
+            // Handle the case when symmetryId is null
+        }
+        if (polishId != null) {
+            polishestbId = em.find(Polishestb.class, polishId);
+        } else {
+            System.err.println("polish Table Id null");
+
+            // Handle the case when symmetryId is null
+        }
+        if (cutsId != null) {
+            System.err.println("Custs Id "+cutsId);
+            cutstbId = em.find(Cutstb.class, cutsId);
+            System.err.println("Custs Id null of not "+cutstbId);
+        } else {
+            System.err.println("cuts Table Id null"+cutsId);
+            // Handle the case when symmetryId is null
+        }
+//        if (symmetryId != null) {
+//            symmetriestbId = em.find(Symmetriestb.class, symmetryId);
+//        } else {
+//            System.err.println("Symmetries Table Id null");
+//        }
+        System.err.println("----------Ejb--------Calll-- 2----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+
+        Diamondstb d = new Diamondstb();
+        d.setUserId(userId);
+        d.setCompnayId(companiestbId);
+        d.setShapeId(shapetbId);
+        d.setColourId(colortbId);
+        d.setClarityId(claritiestbId);
+        d.setCutId(cutstbId);
+        d.setPolishId(polishestbId);
+        d.setFluorescenceId(fluoresencestbId);
+        d.setSymmetryId(symmetryId);
+        d.setWeigth(weigth);
+        d.setPrice(price);
+        d.setAvailability(availability);
+        System.err.println("----------Ejb--------Calll-- 3----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+
+        System.err.println("=============persistes 2=============" + userId + weigth + price + availability+userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth);
+
+//        companiestbId.getDiamondstbCollection().add(d);
+//        shapetbId.getDiamondstbCollection().add(d);
+//        colortbId.getDiamondstbCollection().add(d);
+//        claritiestbId.getDiamondstbCollection().add(d);
+//        cutstbId.getDiamondstbCollection().add(d);
+//        polishestbId.getDiamondstbCollection().add(d);
+//        fluoresencestbId.getDiamondstbCollection().add(d);
+//        symmetriestbId.getDiamondstb();
+//
+        em.persist(d);
+//        em.merge(symmetriestbId);
+        System.err.println("=============persistes 2=============");
+        em.merge(companiestbId);
+        em.merge(shapetbId);
+        em.merge(colortbId);
+        em.merge(claritiestbId);
+        em.merge(cutstbId);
+        em.merge(fluoresencestbId);
+//        em.merge(symmetriestbId);
+        System.err.println("=============marge 2=============");
+        System.err.println("---------------------Diamond Add sucessfully2 --------------");
+
+//-------------------------------------
+//         Diamondstb diamond = new Diamondstb();
+//        diamond.setUserId(userId);
+//        diamond.setCompnayId(em.find(Companiestb.class, compayId));
+//        diamond.setShapeId(em.find(Shapetb.class, shapeId));
+//        diamond.setColourId(em.find(Colortb.class, colourId));
+//        diamond.setClarityId(em.find(Claritiestb.class, clarityId));
+//        diamond.setCutId(em.find(Cutstb.class, cutsId));
+//        diamond.setPolishId(em.find(Polishestb.class, polishId));
+//        diamond.setFluorescenceId(em.find(Fluoresencestb.class, fluorescenceId));
+//        diamond.setSymmetryId(symmetryId);
+//        diamond.setWeigth(weigth);
+//        diamond.setPrice(price);
+//        diamond.setAvailability(availability);
+//                System.err.println("=============post data============="+userId+symmetryId+weigth+price+availability);
+//                System.err.println("=============post data foreign============="+compayId+polishId);
+//
+//        em.persist(diamond);
+//         System.err.println("=============marge=============");
+//        System.err.println("---------------------Diamond Add sucessfully --------------");
+    }
+
 }

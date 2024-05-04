@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -94,12 +95,16 @@ public class Usertb implements Serializable {
     @Column(name = "country_id")
     private int countryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonbTransient
     private Collection<Inquirytb> inquirytbCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonbTransient
     private Collection<Extrainquirytb> extrainquirytbCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    @JsonbTransient
     private Collection<Grouptb> grouptbCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonbTransient
     private Collection<Transactiontb> transactiontbCollection;
 
     public Usertb() {
@@ -267,5 +272,5 @@ public class Usertb implements Serializable {
     public String toString() {
         return "entity.Usertb[ userId=" + userId + " ]";
     }
-    
+
 }

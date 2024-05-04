@@ -46,10 +46,10 @@ public class DiamondClientRest {
         webTarget.path(java.text.MessageFormat.format("delete-cuts/{0}", new Object[]{cut_id})).request().delete();
     }
 
-//    public <T> T ping(Class<T> responseType) throws ClientErrorException {
-//        WebTarget resource = webTarget;
-//        return resource.get(responseType);
-//    }
+    public <T> T ping(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
 
     public void clarities_add(Object requestEntity, String clarities_name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("add-clarities/{0}", new Object[]{clarities_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
@@ -77,8 +77,18 @@ public class DiamondClientRest {
         return webTarget.path(java.text.MessageFormat.format("add-diamond/{0}/{1}/{2}/{3}/{4}", new Object[]{uid, sysmmetryid, weigth, price, avalibility})).request().post(null, Response.class);
     }
 
+    public void register_user(Object requestEntity, String username, String password, String fname, String lname, String phonenum, String usertype, String address, String cityid, String stateid, String countryid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-user/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}", new Object[]{username, password, fname, lname, phonenum, usertype, address, cityid, stateid, countryid})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
     public void color_add(Object requestEntity, String color_name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("add-color/{0}", new Object[]{color_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T getalluser(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-user");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void synmetries_add(Object requestEntity, String synmetriesname) throws ClientErrorException {

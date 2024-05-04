@@ -4,6 +4,7 @@ D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Gr
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Shapetb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\com\mycompany\inventory_system\JAXRSConfiguration.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Fluoresencestb.java
+D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\ejb\LoginSessionBeanLocal.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Categorytb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Companiestb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Symmetriestb.java
@@ -16,6 +17,7 @@ D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\ejb\Diamo
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\com\mycompany\inventory_system\resources\JavaEE8Resource.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\ejb\DiamondSessionBean.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Inquirytb.java
+D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\ejb\LoginSessionBean.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Claritiestb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\client\DiamondClientRest.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Polishestb.java

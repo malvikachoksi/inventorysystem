@@ -15,11 +15,16 @@ import entity.Laboratoriestb;
 import entity.Polishestb;
 import entity.Shapetb;
 import entity.Symmetriestb;
+import entity.Usertb;
 import java.util.Collection;
 import javax.ejb.Local;
 
 @Local
 public interface DiamondSessionBeanLocal {
+    
+        void Register_User(String user_name,String password,String first_name,String last_name,String phone_number,Integer user_type,String address,Integer city_id,Integer state_id,Integer country_id);
+
+        public Collection<Usertb> getalluser();
 
 //    ----------------------Diamond TABLE--------------------------------
     public Collection<Diamondstb> diamonds_getall();

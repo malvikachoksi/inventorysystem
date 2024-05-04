@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -66,24 +67,31 @@ public class Diamondstb implements Serializable {
     private boolean availability;
     @JoinColumn(name = "compnay_id", referencedColumnName = "compnay_id")
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Companiestb compnayId;
     @JoinColumn(name = "colour_id", referencedColumnName = "color_id")
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Colortb colourId;
     @JoinColumn(name = "polish_id", referencedColumnName = "polishe_id")
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Polishestb polishId;
     @JoinColumn(name = "clarity_id", referencedColumnName = "clarities_id")
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Claritiestb clarityId;
     @JoinColumn(name = "shape_id", referencedColumnName = "shape_id")
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Shapetb shapeId;
     @JoinColumn(name = "cut_id", referencedColumnName = "cut_id")
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Cutstb cutId;
     @JoinColumn(name = "fluorescence_id", referencedColumnName = "fluoresence_id")
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Fluoresencestb fluorescenceId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "diamonadId")
     private Collection<Transactiontb> transactiontbCollection;
@@ -250,5 +258,5 @@ public class Diamondstb implements Serializable {
     public String toString() {
         return "entity.Diamondstb[ diamondId=" + diamondId + " ]";
     }
-    
+
 }

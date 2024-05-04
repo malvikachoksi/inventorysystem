@@ -19,11 +19,11 @@ import entity.Symmetriestb;
 import entity.Usertb;
 import java.util.Collection;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
+//import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.security.enterprise.SecurityContext;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+//import javax.security.enterprise.SecurityContext;
+//import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 //import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 //import org.glassfish.soteria.identitystores.hash.PasswordHashCompare;
 

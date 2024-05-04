@@ -11,6 +11,7 @@ import entity.Companiestb;
 import entity.Cutstb;
 import entity.Diamondstb;
 import entity.Fluoresencestb;
+import entity.Grouptb;
 import entity.Laboratoriestb;
 import entity.Polishestb;
 import entity.Shapetb;
@@ -419,11 +420,11 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
             // Handle the case when symmetryId is null
         }
         if (cutsId != null) {
-            System.err.println("Custs Id "+cutsId);
+            System.err.println("Custs Id " + cutsId);
             cutstbId = em.find(Cutstb.class, cutsId);
-            System.err.println("Custs Id null of not "+cutstbId);
+            System.err.println("Custs Id null of not " + cutstbId);
         } else {
-            System.err.println("cuts Table Id null"+cutsId);
+            System.err.println("cuts Table Id null" + cutsId);
             // Handle the case when symmetryId is null
         }
 //        if (symmetryId != null) {
@@ -448,7 +449,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         d.setAvailability(availability);
         System.err.println("----------Ejb--------Calll-- 3----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
 
-        System.err.println("=============persistes 2=============" + userId + weigth + price + availability+userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth);
+        System.err.println("=============persistes 2=============" + userId + weigth + price + availability + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth);
 
 //        companiestbId.getDiamondstbCollection().add(d);
 //        shapetbId.getDiamondstbCollection().add(d);
@@ -492,6 +493,43 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //        em.persist(diamond);
 //         System.err.println("=============marge=============");
 //        System.err.println("---------------------Diamond Add sucessfully --------------");
+    }
+
+    @Override
+    public void Register_User(String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
+
+//        String hashpassword = pb.generate(password.toCharArray());
+        Usertb usertb = new Usertb();
+        usertb.setUsername(user_name);
+        usertb.setPassword(password);
+        usertb.setFirstName(first_name);
+        usertb.setLastName(last_name);
+        usertb.setPhoneNumber(phone_number);
+        usertb.setUserType(user_type);
+        usertb.setAddress(address);
+        usertb.setCityId(city_id);
+        usertb.setStateId(state_id);
+        usertb.setCountryId(country_id);
+//        System.err.println("---------------Password Hash---------------" + hashpassword);
+        System.err.println("------------------Data from the registration----------" + user_name + password + first_name + last_name);
+
+        Grouptb grouptb = new Grouptb();
+        grouptb.setGroupname(user_name);
+        grouptb.setUsername(usertb);
+
+        System.err.println("------------Group table data insert------" + user_name + usertb);
+        em.persist(grouptb);
+        System.err.println("------------User Register sucecessfully  group table-------------------");
+
+        em.persist(usertb);
+
+        System.err.println("------------User Register sucecessfully-- user table-----------------");
+
+    }
+
+    @Override
+    public Collection<Usertb> getalluser() {
+        return em.createNamedQuery("Usertb.findAll").getResultList();
     }
 
 }

@@ -13,6 +13,7 @@ import entity.Laboratoriestb;
 import entity.Polishestb;
 import entity.Shapetb;
 import entity.Symmetriestb;
+import entity.Usertb;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -39,7 +40,23 @@ public class JavaEE8Resource {
                 .ok("ping")
                 .build();
     }
+    //    -----------------registarion-----------------------------------
+    @GET
+    @Path("/get-user")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Usertb> get_all_user() {
+        return ejb.getalluser();
+    }
 
+    @POST
+    @Path("/add-user/{username}/{password}/{fname}/{lname}/{phonenum}/{usertype}/{address}/{cityid}/{stateid}/{countryid}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void register_user(@PathParam("username") String user_name, @PathParam("password") String password, @PathParam("fname") String first_name,
+            @PathParam("lname") String last_name, @PathParam("phonenum") String phone_number, @PathParam("usertype") Integer user_type,
+            @PathParam("address") String address, @PathParam("cityid") Integer city_id, @PathParam("stateid") Integer state_id, @PathParam("countryid") Integer country_id) {
+        System.err.println("password rest----------"+password);
+        ejb.Register_User(user_name, password, first_name, last_name, phone_number, user_type, address, city_id, state_id, country_id);
+    }
     //    ------------------------------------DIAMOND  TABLE----------------------------------------------------------
     @GET
     @Path("/get-diamond")

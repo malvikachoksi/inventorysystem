@@ -46,10 +46,10 @@ public class DiamondClientRest {
         webTarget.path(java.text.MessageFormat.format("delete-cuts/{0}", new Object[]{cut_id})).request().delete();
     }
 
-//    public <T> T ping(Class<T> responseType) throws ClientErrorException {
-//        WebTarget resource = webTarget;
-//        return resource.get(responseType);
-//    }
+    public <T> T ping(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
 
     public void clarities_add(Object requestEntity, String clarities_name) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("add-clarities/{0}", new Object[]{clarities_name})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
@@ -71,6 +71,10 @@ public class DiamondClientRest {
 
     public void shape_add(Object requestEntity, String shapename) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("add-shape/{0}", new Object[]{shapename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void register_user(Object requestEntity, String username, String password, String fname, String lname, String phonenum, String usertype, String address, String cityid, String stateid, String countryid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-user/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}", new Object[]{username, password, fname, lname, phonenum, usertype, address, cityid, stateid, countryid})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public Response diamond_add(String uid, String sysmmetryid, String weigth, String price, String avalibility) throws ClientErrorException {
@@ -144,6 +148,12 @@ public class DiamondClientRest {
     public <T> T getallclarities(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("get-clarities");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T get_all_user(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-user");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

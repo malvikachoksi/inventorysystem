@@ -34,12 +34,13 @@ public class JavaEE8Resource {
     DiamondSessionBeanLocal ejb;
 
     @GET
-        @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response ping() {
         return Response
                 .ok("ping")
                 .build();
     }
+
     //    -----------------registarion-----------------------------------
     @GET
     @Path("/get-user")
@@ -57,6 +58,7 @@ public class JavaEE8Resource {
         System.err.println("password rest----------"+password);
         ejb.Register_User(group_name, user_name, password, first_name, last_name, phone_number, user_type, address, city_id, state_id, country_id);
     }
+
     //    ------------------------------------DIAMOND  TABLE----------------------------------------------------------
     @GET
     @Path("/get-diamond")
@@ -85,7 +87,6 @@ public class JavaEE8Resource {
         return Response.status(Response.Status.CREATED).entity(new customResponse("Success", "Inserted Successfully", true, ejb.diamonds_getall())).build();
     }
 
-    
     @POST
     @Path("/add-diamond/{uid}/{compnyid}/{shapeid}/{colourid}/{clarityid}/{cutsid}/{polishid}/{fluorescenceId}/{sysmmetryid}/{weigth}/{price}/{avalibility}")
     public void diamond_add2(@PathParam("uid") Integer userId, @PathParam("compnyid") Integer compayId,
@@ -97,15 +98,16 @@ public class JavaEE8Resource {
         System.err.println("add -diamond 22 ------rest api compnay-------" + userId + compayId);
         System.err.println("add -diamond 22 ------rest api clarity-------" + userId + clarityId);
         System.err.println("add -diamond 22 ------rest api cuts-------" + userId + cutsId);
-        System.err.println("add -diamond 22 ------rest api polish-------"  + polishId);
-        System.err.println("add -diamond 22 ------rest api fluorescenceId-------" +  fluorescenceId);
-        System.err.println("add -diamond 22 ------rest api symmetryId-------" +  symmetryId);
-        System.err.println("add -diamond 22 ------rest api wiegth-------" +weigth);
-        System.err.println("add -diamond 22 ------rest api shape-------" +shapeId);
-                System.err.println("Find Opration--weigth---"+weigth + "----price-----"+price+ "-----avaliboility----"+availability);
-        ejb.insert_diamonds2(userId, compayId, shapeId, colourId, clarityId, cutsId, polishId, fluorescenceId, symmetryId,weigth, price, availability);
+        System.err.println("add -diamond 22 ------rest api polish-------" + polishId);
+        System.err.println("add -diamond 22 ------rest api fluorescenceId-------" + fluorescenceId);
+        System.err.println("add -diamond 22 ------rest api symmetryId-------" + symmetryId);
+        System.err.println("add -diamond 22 ------rest api wiegth-------" + weigth);
+        System.err.println("add -diamond 22 ------rest api shape-------" + shapeId);
+        System.err.println("Find Opration--weigth---" + weigth + "----price-----" + price + "-----avaliboility----" + availability);
+        ejb.insert_diamonds2(userId, compayId, shapeId, colourId, clarityId, cutsId, polishId, fluorescenceId, symmetryId, weigth, price, availability);
 //        return Response.status(Response.Status.CREATED).entity(new customResponse("Success", "Inserted Successfully", true, ejb.diamonds_getall())).build();
     }
+
     //    ------------------------------------CATEGORY  TABLE----------------------------------------------------------
     @GET
     @Path("/get-category")

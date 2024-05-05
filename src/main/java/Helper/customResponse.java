@@ -5,10 +5,7 @@ package Helper;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- *
- * @author DELL
- */
+
 public class customResponse {
      public String status;
     public String message;

@@ -45,15 +45,15 @@ public class TokenProvider implements Serializable {
         this.tokenValidity = TimeUnit.HOURS.toMillis(10);   //10 hours
     }
 
-    public String createToken(String username, Set<String> authorities) {
+    public String createToken(String username, String authorities) {
         long now = (new Date()).getTime();
        
         System.out.println("TokenProvider - In create Token");
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuer("localhost")
-                .claim(AUTHORITIES_KEY, authorities.stream().collect(joining(",")))
-                .signWith(io.jsonwebtoken.SignatureAlgorithm.ES256, secretKey)
+                .claim(AUTHORITIES_KEY, authorities)
+                .signWith(io.jsonwebtoken.SignatureAlgorithm.HS512, secretKey)
                 //.signWith(SignatureAlgorithm.RS256, myprivateKey)
                 .setExpiration(new Date(now + tokenValidity))
                 .compact();

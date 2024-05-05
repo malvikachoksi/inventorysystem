@@ -5,24 +5,24 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author DELL
+ * @author nihar
  */
 @Entity
 @Table(name = "usertb")
@@ -35,10 +35,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Usertb.findByLastName", query = "SELECT u FROM Usertb u WHERE u.lastName = :lastName"),
     @NamedQuery(name = "Usertb.findByPhoneNumber", query = "SELECT u FROM Usertb u WHERE u.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "Usertb.findByUserType", query = "SELECT u FROM Usertb u WHERE u.userType = :userType"),
-    @NamedQuery(name = "Usertb.findByAddress", query = "SELECT u FROM Usertb u WHERE u.address = :address"),
-    @NamedQuery(name = "Usertb.findByCityId", query = "SELECT u FROM Usertb u WHERE u.cityId = :cityId"),
-    @NamedQuery(name = "Usertb.findByStateId", query = "SELECT u FROM Usertb u WHERE u.stateId = :stateId"),
-    @NamedQuery(name = "Usertb.findByCountryId", query = "SELECT u FROM Usertb u WHERE u.countryId = :countryId")})
+    @NamedQuery(name = "Usertb.findByAddress", query = "SELECT u FROM Usertb u WHERE u.address = :address")})
 public class Usertb implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,7 +51,7 @@ public class Usertb implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 500)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
@@ -81,26 +78,19 @@ public class Usertb implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "Address")
     private String address;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "city_id")
-    private int cityId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "state_id")
-    private int stateId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "country_id")
-    private int countryId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Inquirytb> inquirytbCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Extrainquirytb> extrainquirytbCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
-    private Collection<Grouptb> grouptbCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Transactiontb> transactiontbCollection;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "profile_picture")
+    private String profilePicture;
+    @JoinColumn(name = "country_id", referencedColumnName = "country_id")
+    @ManyToOne(optional = false)
+    private Countries countryId;
+    @JoinColumn(name = "state_id", referencedColumnName = "state_id")
+    @ManyToOne(optional = false)
+    private States stateId;
+    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    @ManyToOne(optional = false)
+    private Cities cityId;
 
     public Usertb() {
     }
@@ -109,7 +99,7 @@ public class Usertb implements Serializable {
         this.userId = userId;
     }
 
-    public Usertb(Integer userId, String username, String password, String firstName, String lastName, String phoneNumber, int userType, String address, int cityId, int stateId, int countryId) {
+    public Usertb(Integer userId, String username, String password, String firstName, String lastName, String phoneNumber, int userType, String address) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -118,9 +108,6 @@ public class Usertb implements Serializable {
         this.phoneNumber = phoneNumber;
         this.userType = userType;
         this.address = address;
-        this.cityId = cityId;
-        this.stateId = stateId;
-        this.countryId = countryId;
     }
 
     public Integer getUserId() {
@@ -187,60 +174,36 @@ public class Usertb implements Serializable {
         this.address = address;
     }
 
-    public int getCityId() {
-        return cityId;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
-    public int getStateId() {
-        return stateId;
-    }
-
-    public void setStateId(int stateId) {
-        this.stateId = stateId;
-    }
-
-    public int getCountryId() {
+    public Countries getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(int countryId) {
+    public void setCountryId(Countries countryId) {
         this.countryId = countryId;
     }
 
-    public Collection<Inquirytb> getInquirytbCollection() {
-        return inquirytbCollection;
+    public States getStateId() {
+        return stateId;
     }
 
-    public void setInquirytbCollection(Collection<Inquirytb> inquirytbCollection) {
-        this.inquirytbCollection = inquirytbCollection;
+    public void setStateId(States stateId) {
+        this.stateId = stateId;
     }
 
-    public Collection<Extrainquirytb> getExtrainquirytbCollection() {
-        return extrainquirytbCollection;
+    public Cities getCityId() {
+        return cityId;
     }
 
-    public void setExtrainquirytbCollection(Collection<Extrainquirytb> extrainquirytbCollection) {
-        this.extrainquirytbCollection = extrainquirytbCollection;
-    }
-
-    public Collection<Grouptb> getGrouptbCollection() {
-        return grouptbCollection;
-    }
-
-    public void setGrouptbCollection(Collection<Grouptb> grouptbCollection) {
-        this.grouptbCollection = grouptbCollection;
-    }
-
-    public Collection<Transactiontb> getTransactiontbCollection() {
-        return transactiontbCollection;
-    }
-
-    public void setTransactiontbCollection(Collection<Transactiontb> transactiontbCollection) {
-        this.transactiontbCollection = transactiontbCollection;
+    public void setCityId(Cities cityId) {
+        this.cityId = cityId;
     }
 
     @Override

@@ -5,9 +5,11 @@
 package ejb;
 
 import entity.Categorytb;
+import entity.Cities;
 import entity.Claritiestb;
 import entity.Colortb;
 import entity.Companiestb;
+import entity.Countries;
 import entity.Cutstb;
 import entity.Diamondstb;
 import entity.Fluoresencestb;
@@ -15,6 +17,7 @@ import entity.Grouptb;
 import entity.Laboratoriestb;
 import entity.Polishestb;
 import entity.Shapetb;
+import entity.States;
 import entity.Symmetriestb;
 import entity.Usertb;
 import java.util.Collection;
@@ -498,8 +501,12 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 
     @Override
     public void Register_User(String group_name,String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
-
-//        String hashpassword = pb.generate(password.toCharArray());
+        
+        
+        Cities city = em.find(Cities.class, city_id);
+        States state = em.find(States.class, state_id);
+        Countries country = em.find(Countries.class, country_id);
+        String hashpassword = B.generate(password.toCharArray());
         Usertb usertb = new Usertb();
         usertb.setUsername(user_name);
         usertb.setPassword(B.generate(password.toCharArray()));
@@ -508,21 +515,22 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         usertb.setPhoneNumber(phone_number);
         usertb.setUserType(user_type);
         usertb.setAddress(address);
-        usertb.setCityId(city_id);
-        usertb.setStateId(state_id);
-        usertb.setCountryId(country_id);
+        usertb.setCityId(city);
+        usertb.setStateId(state);
+        usertb.setCountryId(country);
 //        System.err.println("---------------Password Hash---------------" + hashpassword);
         System.err.println("------------------Data from the registration----------" + user_name + password + first_name + last_name);
 
         Grouptb grouptb = new Grouptb();
         grouptb.setGroupname(group_name);
         grouptb.setUsername(usertb);
-
-        System.err.println("------------Group table data insert------" + B.generate(password.toCharArray()));
+        
+        em.persist(usertb);
+//        System.err.println("------------Group table data insert------" + B.generate(password.toCharArray()));
         em.persist(grouptb);
         System.err.println("------------User Register sucecessfully  group table-------------------");
 
-        em.persist(usertb);
+        
 
         System.err.println("------------User Register sucecessfully-- user table-----------------");
 

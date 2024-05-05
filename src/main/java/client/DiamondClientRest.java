@@ -19,13 +19,13 @@ import javax.ws.rs.core.Response;
  *        client.close();
  * </pre>
  *
- * @author DELL
+ * @author nihar
  */
 public class DiamondClientRest {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/Inventory_System/resources";
+    private static final String BASE_URI = "http://localhost:8080/inventorysystem/resources";
 
     public DiamondClientRest() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -73,8 +73,8 @@ public class DiamondClientRest {
         webTarget.path(java.text.MessageFormat.format("add-shape/{0}", new Object[]{shapename})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public void register_user(Object requestEntity, String username, String password, String fname, String lname, String phonenum, String usertype, String address, String cityid, String stateid, String countryid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("add-user/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}", new Object[]{username, password, fname, lname, phonenum, usertype, address, cityid, stateid, countryid})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    public void register_user(Object requestEntity, String group_name, String username, String password, String fname, String lname, String phonenum, String usertype, String address, String cityid, String stateid, String countryid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("add-user/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}", new Object[]{group_name, username, password, fname, lname, phonenum, usertype, address, cityid, stateid, countryid})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public Response diamond_add(String uid, String sysmmetryid, String weigth, String price, String avalibility) throws ClientErrorException {

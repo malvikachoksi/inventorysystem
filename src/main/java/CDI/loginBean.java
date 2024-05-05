@@ -49,6 +49,7 @@ public class loginBean implements  Serializable {
     String pwd;
     String error;
     String roles;
+    String token;
 //    CredentialValidationResult result;
 //AuthenticationStatus Status;
     
@@ -96,24 +97,33 @@ public class loginBean implements  Serializable {
                 System.err.println("role" + ctx.getCallerPrincipal().getName());
                 System.err.println("here" + ctx.isCallerInRole("customer"));
                 System.err.println("here" + ctx.isCallerInRole("admin"));
+                 
+                String url  = "";
                 if (ctx.isCallerInRole("admin")) {
 
-//                    tc.createToken(credential.g, ctx)
+//                   
+                
                     roles = "admin";
-                    return "/Admin/admin_page.jsf";
+                    
+                    url = "/Admin/admin_page.jsf";
+                    
+                 
                 } else if (ctx.isCallerInRole("customer")) {
                     System.err.println("Customer");
                     roles = "customer";
-                    return "/Customer/customer_page";
+                    url =  "/Customer/customer_page";
                 }else if (ctx.isCallerInRole("inventoryuser")) {
                     System.err.println("Inventory");
                     roles = "customer";
-                    return "/Inventoryuser/inventoryuser_page";
+                    url =  "/Inventoryuser/inventoryuser_page";
                 }
                 else {
                     error = "Role Not found..!!";
                     return "/index";
                 }
+                
+                setToken(tc.createToken(uname, roles));
+                return url;
             } else {
                                     System.err.println("ERROR");
 
@@ -199,6 +209,17 @@ public class loginBean implements  Serializable {
 //        }
 //
 //    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
+    
+    
 
     public String getUname() {
         return uname;

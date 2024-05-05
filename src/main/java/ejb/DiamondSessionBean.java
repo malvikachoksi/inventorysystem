@@ -21,13 +21,14 @@ import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 
 @Stateless
 public class DiamondSessionBean implements DiamondSessionBeanLocal {
 
     @PersistenceContext(unitName = "my_persistence_unit")
     EntityManager em;
-
+    Pbkdf2PasswordHashImpl B = new Pbkdf2PasswordHashImpl();
     //    ------------------------------------CATEGORY  TABLE----------------------------------------------------------
     @Override
     public Collection<Categorytb> get_all_category() {
@@ -496,12 +497,12 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
     }
 
     @Override
-    public void Register_User(String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
+    public void Register_User(String group_name,String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
 
 //        String hashpassword = pb.generate(password.toCharArray());
         Usertb usertb = new Usertb();
         usertb.setUsername(user_name);
-        usertb.setPassword(password);
+        usertb.setPassword(B.generate(password.toCharArray()));
         usertb.setFirstName(first_name);
         usertb.setLastName(last_name);
         usertb.setPhoneNumber(phone_number);
@@ -514,10 +515,10 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         System.err.println("------------------Data from the registration----------" + user_name + password + first_name + last_name);
 
         Grouptb grouptb = new Grouptb();
-        grouptb.setGroupname(user_name);
+        grouptb.setGroupname(group_name);
         grouptb.setUsername(usertb);
 
-        System.err.println("------------Group table data insert------" + user_name + usertb);
+        System.err.println("------------Group table data insert------" + B.generate(password.toCharArray()));
         em.persist(grouptb);
         System.err.println("------------User Register sucecessfully  group table-------------------");
 

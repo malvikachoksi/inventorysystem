@@ -24,7 +24,7 @@ public interface DiamondSessionBeanLocal {
     
     
 
-        void Register_User(String user_name,String password,String first_name,String last_name,String phone_number,Integer user_type,String address,Integer city_id,Integer state_id,Integer country_id);
+        void Register_User(String group_name,String user_name,String password,String first_name,String last_name,String phone_number,Integer user_type,String address,Integer city_id,Integer state_id,Integer country_id);
 
         public Collection<Usertb> getalluser();
 

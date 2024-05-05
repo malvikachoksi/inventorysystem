@@ -49,13 +49,13 @@ public class JavaEE8Resource {
     }
 
     @POST
-    @Path("/add-user/{username}/{password}/{fname}/{lname}/{phonenum}/{usertype}/{address}/{cityid}/{stateid}/{countryid}")
+    @Path("/add-user/{group_name}/{username}/{password}/{fname}/{lname}/{phonenum}/{usertype}/{address}/{cityid}/{stateid}/{countryid}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void register_user(@PathParam("username") String user_name, @PathParam("password") String password, @PathParam("fname") String first_name,
+    public void register_user(@PathParam("group_name") String group_name,@PathParam("username") String user_name, @PathParam("password") String password, @PathParam("fname") String first_name,
             @PathParam("lname") String last_name, @PathParam("phonenum") String phone_number, @PathParam("usertype") Integer user_type,
             @PathParam("address") String address, @PathParam("cityid") Integer city_id, @PathParam("stateid") Integer state_id, @PathParam("countryid") Integer country_id) {
         System.err.println("password rest----------"+password);
-        ejb.Register_User(user_name, password, first_name, last_name, phone_number, user_type, address, city_id, state_id, country_id);
+        ejb.Register_User(group_name, user_name, password, first_name, last_name, phone_number, user_type, address, city_id, state_id, country_id);
     }
     //    ------------------------------------DIAMOND  TABLE----------------------------------------------------------
     @GET

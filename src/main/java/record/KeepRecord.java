@@ -5,7 +5,7 @@
  */
 package record;
 
-import java.util.Set;
+import java.io.Serializable;
 import javax.security.enterprise.CallerPrincipal;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 
@@ -13,7 +13,7 @@ import javax.security.enterprise.identitystore.CredentialValidationResult;
  *
  * @author root
  */
-public class KeepRecord {
+public class KeepRecord implements Serializable{
     private static CredentialValidationResult result;
     private static CallerPrincipal principal;
     private static String roles;

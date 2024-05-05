@@ -4,6 +4,7 @@
  */
 package client;
 
+import javax.annotation.security.DeclareRoles;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -21,6 +22,7 @@ import javax.ws.rs.core.Response;
  *
  * @author nihar
  */
+@DeclareRoles({"admin", "inventory_user"})
 public class DiamondClientRest {
 
     private WebTarget webTarget;

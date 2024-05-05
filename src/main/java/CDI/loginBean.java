@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.AuthenticationStatus;
+import javax.security.enterprise.CallerPrincipal;
 import javax.security.enterprise.SecurityContext;
 import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
 import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
+import record.KeepRecord;
 
 /**
  *
@@ -92,7 +94,7 @@ public class loginBean implements  Serializable {
 
 //                keepRecord.setUname(uname);
 //                keepRecord.setPwd(pwd);
-
+                
                 System.err.println("username" + uname + " " + B.generate(pwd.toCharArray()));
                 System.err.println("role" + ctx.getCallerPrincipal().getName());
                 System.err.println("here" + ctx.isCallerInRole("customer"));
@@ -104,7 +106,7 @@ public class loginBean implements  Serializable {
 //                   
                 
                     roles = "admin";
-                    
+                   
                     url = "/Admin/admin_page.jsf";
                     
                  
@@ -114,7 +116,7 @@ public class loginBean implements  Serializable {
                     url =  "/Customer/customer_page";
                 }else if (ctx.isCallerInRole("inventoryuser")) {
                     System.err.println("Inventory");
-                    roles = "customer";
+                    roles = "inventoryuser";
                     url =  "/Inventoryuser/inventoryuser_page";
                 }
                 else {
@@ -122,7 +124,21 @@ public class loginBean implements  Serializable {
                     return "/index";
                 }
                 
-                setToken(tc.createToken(uname, roles));
+                //status = ctx.notifyContainerAboutLogin(status);
+                String T  = tc.createToken(uname, roles);
+                setToken(T);
+
+                KeepRecord.setUsername(uname);
+                KeepRecord.setPassword(pwd);
+                KeepRecord.setPrincipal((CallerPrincipal) ctx.getCallerPrincipal());
+                KeepRecord.setRoles(roles);
+                KeepRecord.setToken(token);
+                
+                System.out.println("CDI.loginBean.login() + token" + token);
+                System.out.println("CDI.loginBean.login() + KeepRecordtoken" + KeepRecord.getToken());
+                
+                response.setHeader("Authantication", "Bearer "+token);
+//                request.setAttribute("Authantication", );
                 return url;
             } else {
                                     System.err.println("ERROR");
@@ -216,6 +232,7 @@ public class loginBean implements  Serializable {
 
     public void setToken(String token) {
         this.token = token;
+      //this.token = KeepRecord.getToken();
     }
     
     
@@ -269,6 +286,13 @@ public class loginBean implements  Serializable {
 //    @Override
 //    public void cleanSubject(HttpServletRequest request, HttpServletResponse response, HttpMessageContext httpMessageContext) {
 //        HttpAuthenticationMechanism.super.cleanSubject(request, response, httpMessageContext); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+//    }
+
+//    @Override
+//    public AuthenticationStatus validateRequest(HttpServletRequest hsr, HttpServletResponse hsr1, HttpMessageContext hmc) throws AuthenticationException {
+//        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        return null;
+//        
 //    }
 
 }

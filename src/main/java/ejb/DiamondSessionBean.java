@@ -20,12 +20,15 @@ import entity.Shapetb;
 import entity.States;
 import entity.Symmetriestb;
 import entity.Usertb;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 
+@DeclareRoles({"admin","inventory_user","customer"})
 @Stateless
 public class DiamondSessionBean implements DiamondSessionBeanLocal {
 
@@ -498,7 +501,8 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //         System.err.println("=============marge=============");
 //        System.err.println("---------------------Diamond Add sucessfully --------------");
     }
-
+    
+    @RolesAllowed("admin")
     @Override
     public void Register_User(String group_name,String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
         

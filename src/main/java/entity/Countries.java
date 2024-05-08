@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author nihar
+ * @author hp
  */
 @Entity
 @Table(name = "countries")
@@ -33,6 +34,12 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Countries.findByName", query = "SELECT c FROM Countries c WHERE c.name = :name")})
 public class Countries implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "country_id")
+    private Integer countryId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2)
@@ -43,17 +50,13 @@ public class Countries implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
+    @JsonbTransient
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "country_id")
-    private Integer countryId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
-    private Collection<Usertb> usertbCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
     private Collection<States> statesCollection;
+    @JsonbTransient
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
+    private Collection<Usertb> usertbCollection;
 
     public Countries() {
     }
@@ -76,13 +79,20 @@ public class Countries implements Serializable {
         this.countryId = countryId;
     }
 
-
-    public Collection<Usertb> getUsertbCollection() {
-        return usertbCollection;
+    public String getCountryCode() {
+        return countryCode;
     }
 
-    public void setUsertbCollection(Collection<Usertb> usertbCollection) {
-        this.usertbCollection = usertbCollection;
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Collection<States> getStatesCollection() {
@@ -91,6 +101,14 @@ public class Countries implements Serializable {
 
     public void setStatesCollection(Collection<States> statesCollection) {
         this.statesCollection = statesCollection;
+    }
+
+    public Collection<Usertb> getUsertbCollection() {
+        return usertbCollection;
+    }
+
+    public void setUsertbCollection(Collection<Usertb> usertbCollection) {
+        this.usertbCollection = usertbCollection;
     }
 
     @Override
@@ -118,20 +136,4 @@ public class Countries implements Serializable {
         return "entity.Countries[ countryId=" + countryId + " ]";
     }
 
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
 }

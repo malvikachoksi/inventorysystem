@@ -8,12 +8,15 @@ import static AuthJWT.Constants.AUTHORIZATION_HEADER;
 import static AuthJWT.Constants.BEARER;
 import AuthJWT.TokenProvider;
 import java.io.Serializable;
+import java.util.Set;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.AuthenticationStatus;
+import static javax.security.enterprise.AuthenticationStatus.SEND_CONTINUE;
+import static javax.security.enterprise.AuthenticationStatus.SUCCESS;
 import javax.security.enterprise.CallerPrincipal;
 import javax.security.enterprise.SecurityContext;
 import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
@@ -49,8 +52,17 @@ public class loginBean implements  Serializable {
     TokenProvider tc;
     String uname;
     String pwd;
+    private AuthenticationStatus status;
+
+    public AuthenticationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AuthenticationStatus status) {
+        this.status = status;
+    }
     String error;
-    String roles;
+    Set<String> roles;
     String token;
 //    CredentialValidationResult result;
 //AuthenticationStatus Status;
@@ -72,9 +84,12 @@ public class loginBean implements  Serializable {
 //    }
 
     public String login() {
+        
+        System.err.print("AAAAAAAAAAAAAAAAA + " + pwd);
+        System.err.print("AAAAAAAAAAAAAAAAA + " + uname);
         try {
             Pbkdf2PasswordHashImpl B = new Pbkdf2PasswordHashImpl();
-
+            FacesContext context = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             System.err.println("login function " + B.generate(pwd.toCharArray()));
             System.err.println("login function " + " " + pwd + " " + "Hello");
@@ -86,70 +101,88 @@ public class loginBean implements  Serializable {
 //              AuthenticationStatus status = createToken(result, (HttpMessageContext) ctx);
 
             AuthenticationStatus status = ctx.authenticate(request, response, AuthenticationParameters.withParams().credential(credential));
+
+               if (status.equals(SEND_CONTINUE)) {
+            // Authentication mechanism has send a redirect, should not
+            // send anything to response from JSF now. The control will now go into HttpAuthenticationMechanism
+           context.responseComplete();
+       } 
+     
+     if(status.equals(SUCCESS))
+        {
+        if(roles.contains("admin"))
+            return "/Admin/admin_page.jsf";
+       else if(roles.contains("customer"))
+            return "/Customer/customer_page.jsf";
+       
+        }
+     else
+     {
+          error = "User Name or Password may be wrong";
+          return "/Pages/Login.jsf";
+     }
+
+
+
 //            System.err.println("status" + status + "  " + AuthenticationStatus.SUCCESS);
-            if (status == AuthenticationStatus.SUCCESS) {
-//            if(result.getStatus()==CredentialValidationResult.Status.VALID) {
-//              AuthenticationStatus status = createToken(result, (HttpMessageContext) ctx);
-//              status = ctx.(result);
-
-//                keepRecord.setUname(uname);
-//                keepRecord.setPwd(pwd);
-                
-                System.err.println("username" + uname + " " + B.generate(pwd.toCharArray()));
-                System.err.println("role" + ctx.getCallerPrincipal().getName());
-                System.err.println("here" + ctx.isCallerInRole("customer"));
-                System.err.println("here" + ctx.isCallerInRole("admin"));
-                 
-                String url  = "";
-                if (ctx.isCallerInRole("admin")) {
-
-//                   
-                
-                    roles = "admin";
-                   
-                    url = "/Admin/admin_page.jsf";
-                    
-                 
-                } else if (ctx.isCallerInRole("customer")) {
-                    System.err.println("Customer");
-                    roles = "customer";
-                    url =  "/Customer/customer_page";
-                }else if (ctx.isCallerInRole("inventoryuser")) {
-                    System.err.println("Inventory");
-                    roles = "inventoryuser";
-                    url =  "/Inventoryuser/inventoryuser_page";
-                }
-                else {
-                    error = "Role Not found..!!";
-                    return "/index";
-                }
-                
-                //status = ctx.notifyContainerAboutLogin(status);
-                String T  = tc.createToken(uname, roles);
-                setToken(T);
-
-                KeepRecord.setUsername(uname);
-                KeepRecord.setPassword(pwd);
-                KeepRecord.setPrincipal((CallerPrincipal) ctx.getCallerPrincipal());
-                KeepRecord.setRoles(roles);
-                KeepRecord.setToken(token);
-                
-                System.out.println("CDI.loginBean.login() + token" + token);
-                System.out.println("CDI.loginBean.login() + KeepRecordtoken" + KeepRecord.getToken());
-                
-                response.setHeader("Authantication", "Bearer "+token);
-//                request.setAttribute("Authantication", );
-                return url;
-            } else {
-                                    System.err.println("ERROR");
-
-                error = "User Not found..!!";
-                return "/Login";
-            }
+//            if (status == AuthenticationStatus.SUCCESS) {
+////            if(result.getStatus()==CredentialValidationResult.Status.VALID) {
+////              AuthenticationStatus status = createToken(result, (HttpMessageContext) ctx);
+////              status = ctx.(result);
+//
+////                keepRecord.setUname(uname);
+////                keepRecord.setPwd(pwd);
+//                
+//                System.err.println("username" + uname + " " + B.generate(pwd.toCharArray()));
+//                System.err.println("role" + ctx.getCallerPrincipal().getName());
+//                System.err.println("here" + ctx.isCallerInRole("customer"));
+//                System.err.println("here" + ctx.isCallerInRole("admin"));
+//                 
+//                String url  = "";
+//                if (ctx.isCallerInRole("admin")) {
+//                    roles = "admin";
+//                    url = "/Admin/admin_page.jsf";
+//                } else if (ctx.isCallerInRole("customer")) {
+//                    System.err.println("Customer");
+//                    roles = "customer";
+//                    url =  "/Customer/customer_page";
+//                }else if (ctx.isCallerInRole("inventoryuser")) {
+//                    System.err.println("Inventory");
+//                    roles = "inventoryuser";
+//                    url =  "/Inventoryuser/inventoryuser_page";
+//                }
+//                else {
+//                    error = "Role Not found..!!";
+//                    return "/index";
+//                }
+//                
+//                //status = ctx.notifyContainerAboutLogin(status);
+//                String T  = tc.createToken(uname, roles);
+//                setToken(T);
+//
+//                KeepRecord.setUsername(uname);
+//                KeepRecord.setPassword(pwd);
+//                KeepRecord.setPrincipal((CallerPrincipal) ctx.getCallerPrincipal());
+//                KeepRecord.setRoles(Set.of(roles
+//                ));
+//                KeepRecord.setToken(token);
+//                
+//                System.out.println("CDI.loginBean.login() + token" + token);
+//                System.out.println("CDI.loginBean.login() + KeepRecordtoken" + KeepRecord.getToken());
+//                
+//                response.setHeader("Authantication", "Bearer "+token);
+////              request.setAttribute("Authantication", );
+//                return url;
+//            } else {
+//                System.err.println("ERROR");
+//                error = "User Not found..!!";
+//                return "/Login";
+//            }
         } catch (Exception e) {
             error = e.getMessage();
             return "";
         }
+        return null;
 
     }
 
@@ -262,11 +295,11 @@ public class loginBean implements  Serializable {
         this.error = error;
     }
 
-    public String getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 

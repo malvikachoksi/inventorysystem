@@ -17,10 +17,10 @@
       <h:form id="loginFrm" >
         <h:panelGrid id="grid" columns="2">
             <h:outputLabel id="ulbl" for="user" value="User"/>
-            <h:inputText id="uname" value="#{loginCDI.uname}"/>
+            <h:inputText id="uname" value="#{sirLogin.username}"/>
             <h:outputLabel id="plbl" for="pass" value="Password"/>
-            <h:inputSecret id="pwd" value="#{loginCDI.pwd}"/>
-            <h:commandButton id="submit" value="Login" action="#{loginCDI.login()}"/>
+            <h:inputSecret id="pwd" value="#{sirLogin.password}"/>
+            <h:commandButton id="submit" value="Login" action="#{sirLogin.login()}"/>
         </h:panelGrid>
         </h:form> 
         

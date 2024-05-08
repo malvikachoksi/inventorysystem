@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../MasterTemplate.xhtml">
+            <ui:define name="content">
+                <div id="content" class="app-content" style="margin-top: 80px">
+                    <div class="d-flex align-items-center mb-3">
+                        <div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">PAGES</a></li>
+                                <li class="breadcrumb-item active">Diamond</li>
+                            </ul>
+                            <h1 class="page-header mb-0">Diamond</h1>
+                        </div>
+
+                        <div class="ml-auto">    
+                            <h:form>
+                                <h:commandButton action="Add.xhtml" value="Add Diamond" class="btn btn-primary" >
+                                    <!--<a href="Add.xhtml" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw mr-1"></i> Add Diamond</a>-->
+                                </h:commandButton>
+                            </h:form>
+                            <!--<a href="Add.xhtml" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw mr-1"></i> Add Diamond</a>-->
+                        </div>
+                    </div>
+
+                    <!--                <div class="mb-sm-4 mb-3 d-sm-flex">
+                                        <div class="mt-sm-0 mt-2"><a href="#" class="text-dark text-decoration-none"><i class="fa fa-download fa-fw mr-1 text-muted"></i> Export</a></div>
+                                        <div class="ml-sm-4 mt-sm-0 mt-2"><a href="#" class="text-dark text-decoration-none"><i class="fa fa-upload fa-fw mr-1 text-muted"></i> Import</a></div>
+                                        <div class="ml-sm-4 mt-sm-0 mt-2 dropdown-toggle">
+                                            <a href="#" data-toggle="dropdown" class="text-dark text-decoration-none">More Actions</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Separated link</a>
+                                            </div>
+                                        </div>
+                                    </div>-->
+
+                    <div class="card">
+                        <ul class="nav nav-tabs nav-tabs-v2 px-4">
+                            <li class="nav-item mr-3"><a href="#allTab" class="nav-link active px-2" data-toggle="tab">All</a></li>
+                            <!--                        <li class="nav-item mr-3"><a href="#publishedTab" class="nav-link px-2" data-toggle="tab">Published</a></li>
+                                                    <li class="nav-item mr-3"><a href="#expiredTab" class="nav-link px-2" data-toggle="tab">Expired</a></li>
+                                                    <li class="nav-item mr-3"><a href="#deletedTab" class="nav-link px-2" data-toggle="tab">Deleted</a></li>-->
+                        </ul>
+                        <div class="tab-content p-4">
+                            <div class="tab-pane fade show active" id="allTab">
+                                <!-- BEGIN input-group -->
+                                <!--                                <div class="input-group mb-4">
+                                                                    <div class="input-group-prepend">
+                                                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter User &nbsp;</button>
+                                                                        <div class="dropdown-menu">
+                                                                            <a class="dropdown-item" href="#">Action</a>
+                                                                            <a class="dropdown-item" href="#">Another action</a>
+                                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                                            <div role="separator" class="dropdown-divider"></div>
+                                                                            <a class="dropdown-item" href="#">Separated link</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-fill position-relative">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend position-absolute top-0 bottom-0" style="z-index: 1020;">
+                                                                                <span class="input-group-text bg-none border-0 pr-0"><i class="fa fa-search opacity-5"></i></span>
+                                                                            </div>
+                                                                            <input type="text" class="form-control pl-35px" placeholder="Search User" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
+                                <!-- END input-group -->
+
+                                <!-- BEGIN table -->
+                                <div class="table-responsive">
+                                    <f:view>
+                                        <h:form>
+                                            <h:dataTable value="#{diamondCDIBean.diamondstbs}" var="item" >
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="DiamondId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.diamondId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="UserId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.userId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="SymmetryId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.symmetryId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Weigth"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.weigth}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Price"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.price}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Availability"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.availability}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="CompnayId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.compnayId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="ColourId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.colourId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="PolishId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.polishId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="ClarityId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.clarityId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="ShapeId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.shapeId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="CutId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.cutId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="FluorescenceId"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.fluorescenceId}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Symmetriestb"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.symmetryId}"/>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </h:form>
+                                    </f:view>
+
+                                   
+                                </div>
+                                <!-- END table -->
+
+                                <!--                        <div class="d-md-flex align-items-center">
+                                                            <div class="mr-md-auto text-md-left text-center mb-2 mb-md-0">
+                                                                Showing 1 to 10 of 57 entries
+                                                            </div>
+                                                            <ul class="pagination mb-0 justify-content-center">
+                                                                <li class="page-item disabled"><a class="page-link">Previous</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                            </ul>
+                                                        </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END #content -->
+                <!-- BEGIN btn-scroll-top -->
+                <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+                <!-- END btn-scroll-top -->
+                <!-- END #app -->
+
+                <!-- ================== BEGIN core-js ================== -->
+                <script src="assets/js/app.min.js"></script>
+                <!-- ================== END core-js ================== -->
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

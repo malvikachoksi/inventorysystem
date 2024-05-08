@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-       <h:head>
-<!--        <link rel="stylesheet" href="../resources/css/cssLayout.css"/>
-        <link rel="stylesheet" href="../resources/css/default.css"/>-->
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <!--        <link rel="stylesheet" href="../resources/css/cssLayout.css"/>
+                <link rel="stylesheet" href="../resources/css/default.css"/>-->
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="assets" name="css/app.min.css"   />
@@ -14,87 +15,58 @@
     <h:body>
         <!-- BEGIN #app -->
         <div id="app" class="app app-full-height app-without-header">
-            <!-- BEGIN register -->
-            <div class="register">
-                <!-- BEGIN register-content -->
-                <div class="register-content">
-                    <form action="index.html" method="POST" name="register_form">
-                        <h1 class="text-center">Sign Up</h1>
-                        <p class="text-muted text-center">One Admin ID is all you need to access all the Admin services.</p>
+            <!-- BEGIN login -->
+            <div class="login">
+                <!-- BEGIN login-content -->
+                <div class="login-content">
+                    <h1 class="text-center">Sign Up</h1>
+                    <div class="text-muted text-center mb-4">
+                        For your protection, please verify your identity.
+                    </div>
+                    <h:form>
                         <div class="form-group">
-                            <label>Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-control-lg fs-15px" placeholder="e.g John Smith" value="" />
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-control-lg fs-15px" placeholder="username@address.com" value="" />
+                            <label>First Name <span class="text-danger">*</span></label>
+                            <h:inputText class="form-control form-control-lg fs-15px" value="#{regiterBean.firstName}" />
                         </div>
                         <div class="form-group">
-                            <label>Password <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control form-control-lg fs-15px" value="" />
+                            <label>Last Name <span class="text-danger">*</span></label>
+                            <h:inputText  class="form-control form-control-lg fs-15px" value="#{regiterBean.lastName}" />
                         </div>
                         <div class="form-group">
-                            <label>Confirm Password <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control form-control-lg fs-15px" value="" />
+                            <label>Email Address</label>
+                            <h:inputText id="email" class="form-control form-control-lg fs-15px" value="#{regiterBean.uname}" />
                         </div>
                         <div class="form-group">
-                            <label>Country <span class="text-danger">*</span></label>
-                            <select class="form-control form-control-lg fs-15px">
-                                <option>United States</option>
-                            </select>
+                            <label>Password</label>
+                            <h:inputSecret id="password" class="form-control form-control-lg fs-15px" value="#{regiterBean.password}" />
                         </div>
-                        <div class="form-group">
-                            <label>Gender <span class="text-danger">*</span></label>
-                            <select class="form-control form-control-lg fs-15px">
-                                <option>Female</option>
-                            </select>
+                        
+                      <div class="form-group">
+                            <label>PhoneNumber <span class="text-danger">*</span></label>
+                            <h:inputText class="form-control form-control-lg fs-15px" value="#{regiterBean.phoneNumber}" />
                         </div>
-                        <div class="form-group">
-                            <label>Date of Birth <span class="text-danger">*</span></label>
-                            <div class="row">
-                                <div class="col-6">
-                                    <select class="form-control form-control-lg fs-15px">
-                                        <option>Month</option>
-                                    </select>
-                                </div>
-                                <div class="col-3">
-                                    <select class="form-control form-control-lg fs-15px">
-                                        <option>Day</option>
-                                    </select>
-                                </div>
-                                <div class="col-3">
-                                    <select class="form-control form-control-lg fs-15px">
-                                        <option>Year</option>
-                                    </select>
-                                </div>
-                            </div>
+                         <div class="form-group">
+                            <label>Address <span class="text-danger">*</span></label>
+                            <h:inputText  class="form-control form-control-lg fs-15px" value="#{regiterBean.address}" />
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" value="" id="customCheck1" />
-                                <label class="custom-control-label fw-500" for="customCheck1">I have read and agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</label>
-                            </div>
+                        <h:commandButton value="Sign Up" action="#{regiterBean.userRegister()}" styleClass="btn btn-primary btn-lg btn-block fw-500 mb-3" />
+                        <div class="text-center text-muted">
+                           You already have account ? <h:outputLink value="Login.jsf">Sign in</h:outputLink>.
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg fs-15px fw-500 btn-block">Sign Up</button>
-                        </div>
-                        <div class="text-muted text-center">
-                            Already have an Admin ID? <a href="page_login.html">Sign In</a>
-                        </div>
-                    </form>
+                    </h:form>
                 </div>
-                <!-- END register-content -->
+                <!-- END login-content -->
             </div>
-            <!-- END register -->
+            <!-- END login -->
 
             <!-- BEGIN btn-scroll-top -->
-            <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+            <h:outputLink id="scroll-top" onclick="window.scrollTo(0, 0);" styleClass="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></h:outputLink>
             <!-- END btn-scroll-top -->
         </div>
         <!-- END #app -->
 
         <!-- ================== BEGIN core-js ================== -->
-        <script src="assets/js/app.min.js"></script>
+        <h:outputScript library="js" name="app.min.js" />
         <!-- ================== END core-js ================== -->
     </h:body>
 </html>

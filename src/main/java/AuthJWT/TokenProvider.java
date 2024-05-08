@@ -45,7 +45,7 @@ public class TokenProvider implements Serializable {
         this.tokenValidity = TimeUnit.HOURS.toMillis(10);   //10 hours
     }
 
-    public String createToken(String username, String authorities) {
+    public String createToken(String username,  Set<String> authorities) {
         long now = (new Date()).getTime();
        
         System.out.println("TokenProvider - In create Token");

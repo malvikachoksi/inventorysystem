@@ -8,6 +8,7 @@ import entity.Categorytb;
 import entity.Claritiestb;
 import entity.Colortb;
 import entity.Companiestb;
+import entity.Countries;
 import entity.Cutstb;
 import entity.Diamondstb;
 import entity.Fluoresencestb;
@@ -27,6 +28,7 @@ public interface DiamondSessionBeanLocal {
         void Register_User(String group_name,String user_name,String password,String first_name,String last_name,String phone_number,Integer user_type,String address,Integer city_id,Integer state_id,Integer country_id);
 
         public Collection<Usertb> getalluser();
+        public Collection<Usertb> searchUser(String q);
 
     
 //    ----------------------Diamond TABLE--------------------------------
@@ -128,5 +130,9 @@ public interface DiamondSessionBeanLocal {
     public void companie_delete(Integer companie_id);
 
     public void companie_update(Integer companie_id, String companie_name);
+    
+        public Collection<Countries> getAllCountrieses();
+        public Countries getCountryById(int id);
+
 
 }

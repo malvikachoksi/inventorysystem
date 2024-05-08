@@ -6,6 +6,7 @@ import entity.Categorytb;
 import entity.Claritiestb;
 import entity.Colortb;
 import entity.Companiestb;
+import entity.Countries;
 import entity.Cutstb;
 import entity.Diamondstb;
 import entity.Fluoresencestb;
@@ -47,6 +48,13 @@ public class JavaEE8Resource {
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Usertb> get_all_user() {
         return ejb.getalluser();
+    }
+
+    @GET
+    @Path("/get-countries")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Countries> get_all_countries() {
+        return ejb.getAllCountrieses();
     }
 
     @POST

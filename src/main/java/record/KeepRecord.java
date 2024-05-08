@@ -6,6 +6,7 @@
 package record;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.security.enterprise.CallerPrincipal;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 
@@ -16,7 +17,7 @@ import javax.security.enterprise.identitystore.CredentialValidationResult;
 public class KeepRecord implements Serializable{
     private static CredentialValidationResult result;
     private static CallerPrincipal principal;
-    private static String roles;
+    private static Set<String> roles;
     private static String token;
     private static String username;
     private static String password;
@@ -53,11 +54,11 @@ public class KeepRecord implements Serializable{
         KeepRecord.principal = principal;
     }
 
-    public static String getRoles() {
+    public static Set<String> getRoles() {
         return roles;
     }
 
-    public static void setRoles(String roles) {
+    public static void setRoles(Set<String> roles) {
         KeepRecord.roles = roles;
     }
 

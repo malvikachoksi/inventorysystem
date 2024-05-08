@@ -5,7 +5,10 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +19,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author nihar
+ * @author hp
  */
 @Entity
 @Table(name = "usertb")
@@ -34,6 +38,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Usertb.findByFirstName", query = "SELECT u FROM Usertb u WHERE u.firstName = :firstName"),
     @NamedQuery(name = "Usertb.findByLastName", query = "SELECT u FROM Usertb u WHERE u.lastName = :lastName"),
     @NamedQuery(name = "Usertb.findByPhoneNumber", query = "SELECT u FROM Usertb u WHERE u.phoneNumber = :phoneNumber"),
+    @NamedQuery(name = "Usertb.searchAll", query = "SELECT u FROM Usertb u WHERE u.firstName LIKE :q or u.lastName LIKE :q or u.username LIKE :q or u.address LIKE :q"),
     @NamedQuery(name = "Usertb.findByUserType", query = "SELECT u FROM Usertb u WHERE u.userType = :userType"),
     @NamedQuery(name = "Usertb.findByAddress", query = "SELECT u FROM Usertb u WHERE u.address = :address")})
 public class Usertb implements Serializable {
@@ -82,15 +87,27 @@ public class Usertb implements Serializable {
     @Size(max = 65535)
     @Column(name = "profile_picture")
     private String profilePicture;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Inquirytb> inquirytbCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Extrainquirytb> extrainquirytbCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+            @JsonbTransient
+
+    private Collection<Grouptb> grouptbCollection;
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
     @ManyToOne(optional = false)
     private Countries countryId;
+        @JsonbTransient
     @JoinColumn(name = "state_id", referencedColumnName = "state_id")
     @ManyToOne(optional = false)
     private States stateId;
+    @JsonbTransient
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     @ManyToOne(optional = false)
     private Cities cityId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Transactiontb> transactiontbCollection;
 
     public Usertb() {
     }
@@ -182,6 +199,30 @@ public class Usertb implements Serializable {
         this.profilePicture = profilePicture;
     }
 
+    public Collection<Inquirytb> getInquirytbCollection() {
+        return inquirytbCollection;
+    }
+
+    public void setInquirytbCollection(Collection<Inquirytb> inquirytbCollection) {
+        this.inquirytbCollection = inquirytbCollection;
+    }
+
+    public Collection<Extrainquirytb> getExtrainquirytbCollection() {
+        return extrainquirytbCollection;
+    }
+
+    public void setExtrainquirytbCollection(Collection<Extrainquirytb> extrainquirytbCollection) {
+        this.extrainquirytbCollection = extrainquirytbCollection;
+    }
+
+    public Collection<Grouptb> getGrouptbCollection() {
+        return grouptbCollection;
+    }
+
+    public void setGrouptbCollection(Collection<Grouptb> grouptbCollection) {
+        this.grouptbCollection = grouptbCollection;
+    }
+
     public Countries getCountryId() {
         return countryId;
     }
@@ -204,6 +245,14 @@ public class Usertb implements Serializable {
 
     public void setCityId(Cities cityId) {
         this.cityId = cityId;
+    }
+
+    public Collection<Transactiontb> getTransactiontbCollection() {
+        return transactiontbCollection;
+    }
+
+    public void setTransactiontbCollection(Collection<Transactiontb> transactiontbCollection) {
+        this.transactiontbCollection = transactiontbCollection;
     }
 
     @Override

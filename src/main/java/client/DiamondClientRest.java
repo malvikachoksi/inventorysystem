@@ -4,7 +4,6 @@
  */
 package client;
 
-import javax.annotation.security.DeclareRoles;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -20,9 +19,8 @@ import javax.ws.rs.core.Response;
  *        client.close();
  * </pre>
  *
- * @author nihar
+ * @author hp
  */
-@DeclareRoles({"admin", "inventory_user"})
 public class DiamondClientRest {
 
     private WebTarget webTarget;
@@ -245,6 +243,12 @@ public class DiamondClientRest {
 
     public void category_delete(String cate_id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("delete-category/{0}", new Object[]{cate_id})).request().delete();
+    }
+
+    public <T> T get_all_countries(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("get-countries");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void close() {

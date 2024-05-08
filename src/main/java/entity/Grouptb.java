@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author DELL
+ * @author hp
  */
 @Entity
 @Table(name = "grouptb")

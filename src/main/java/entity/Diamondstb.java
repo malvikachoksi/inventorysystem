@@ -15,17 +15,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author DELL
+ * @author hp
  */
 @Entity
 @Table(name = "diamondstb")
@@ -33,7 +34,6 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Diamondstb.findAll", query = "SELECT d FROM Diamondstb d"),
     @NamedQuery(name = "Diamondstb.findByDiamondId", query = "SELECT d FROM Diamondstb d WHERE d.diamondId = :diamondId"),
     @NamedQuery(name = "Diamondstb.findByUserId", query = "SELECT d FROM Diamondstb d WHERE d.userId = :userId"),
-    @NamedQuery(name = "Diamondstb.findBySymmetryId", query = "SELECT d FROM Diamondstb d WHERE d.symmetryId = :symmetryId"),
     @NamedQuery(name = "Diamondstb.findByWeigth", query = "SELECT d FROM Diamondstb d WHERE d.weigth = :weigth"),
     @NamedQuery(name = "Diamondstb.findByPrice", query = "SELECT d FROM Diamondstb d WHERE d.price = :price"),
     @NamedQuery(name = "Diamondstb.findByAvailability", query = "SELECT d FROM Diamondstb d WHERE d.availability = :availability")})
@@ -51,12 +51,26 @@ public class Diamondstb implements Serializable {
     private int userId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "symmetry_id")
-    private int symmetryId;
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "certificate")
+    private String certificate;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "measurements")
+    private String measurements;
     @Basic(optional = false)
     @NotNull
     @Column(name = "weigth")
     private float weigth;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "image")
+    private String image;
     @Basic(optional = false)
     @NotNull
     @Column(name = "price")
@@ -93,10 +107,12 @@ public class Diamondstb implements Serializable {
     @ManyToOne(optional = false)
     @JsonbTransient
     private Fluoresencestb fluorescenceId;
+    @JoinColumn(name = "symmetry_id", referencedColumnName = "symmetrie_id")
+    @ManyToOne(optional = false)
+    @JsonbTransient
+    private Symmetriestb symmetryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "diamonadId")
     private Collection<Transactiontb> transactiontbCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "diamondstb")
-    private Symmetriestb symmetriestb;
 
     public Diamondstb() {
     }
@@ -105,11 +121,13 @@ public class Diamondstb implements Serializable {
         this.diamondId = diamondId;
     }
 
-    public Diamondstb(Integer diamondId, int userId, int symmetryId, float weigth, float price, boolean availability) {
+    public Diamondstb(Integer diamondId, int userId, String certificate, String measurements, float weigth, String image, float price, boolean availability) {
         this.diamondId = diamondId;
         this.userId = userId;
-        this.symmetryId = symmetryId;
+        this.certificate = certificate;
+        this.measurements = measurements;
         this.weigth = weigth;
+        this.image = image;
         this.price = price;
         this.availability = availability;
     }
@@ -130,12 +148,20 @@ public class Diamondstb implements Serializable {
         this.userId = userId;
     }
 
-    public int getSymmetryId() {
-        return symmetryId;
+    public String getCertificate() {
+        return certificate;
     }
 
-    public void setSymmetryId(int symmetryId) {
-        this.symmetryId = symmetryId;
+    public void setCertificate(String certificate) {
+        this.certificate = certificate;
+    }
+
+    public String getMeasurements() {
+        return measurements;
+    }
+
+    public void setMeasurements(String measurements) {
+        this.measurements = measurements;
     }
 
     public float getWeigth() {
@@ -144,6 +170,14 @@ public class Diamondstb implements Serializable {
 
     public void setWeigth(float weigth) {
         this.weigth = weigth;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public float getPrice() {
@@ -218,20 +252,20 @@ public class Diamondstb implements Serializable {
         this.fluorescenceId = fluorescenceId;
     }
 
+    public Symmetriestb getSymmetryId() {
+        return symmetryId;
+    }
+
+    public void setSymmetryId(Symmetriestb symmetryId) {
+        this.symmetryId = symmetryId;
+    }
+
     public Collection<Transactiontb> getTransactiontbCollection() {
         return transactiontbCollection;
     }
 
     public void setTransactiontbCollection(Collection<Transactiontb> transactiontbCollection) {
         this.transactiontbCollection = transactiontbCollection;
-    }
-
-    public Symmetriestb getSymmetriestb() {
-        return symmetriestb;
-    }
-
-    public void setSymmetriestb(Symmetriestb symmetriestb) {
-        this.symmetriestb = symmetriestb;
     }
 
     @Override
@@ -258,5 +292,5 @@ public class Diamondstb implements Serializable {
     public String toString() {
         return "entity.Diamondstb[ diamondId=" + diamondId + " ]";
     }
-
+    
 }

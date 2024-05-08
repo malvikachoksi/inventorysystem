@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author DELL
+ * @author hp
  */
 @Entity
 @Table(name = "shapetb")
@@ -44,6 +44,12 @@ public class Shapetb implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "shape_name")
     private String shapeName;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "shape_image")
+    private String shapeImage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shapeId")
     private Collection<Diamondstb> diamondstbCollection;
 
@@ -54,9 +60,10 @@ public class Shapetb implements Serializable {
         this.shapeId = shapeId;
     }
 
-    public Shapetb(Integer shapeId, String shapeName) {
+    public Shapetb(Integer shapeId, String shapeName, String shapeImage) {
         this.shapeId = shapeId;
         this.shapeName = shapeName;
+        this.shapeImage = shapeImage;
     }
 
     public Integer getShapeId() {
@@ -73,6 +80,14 @@ public class Shapetb implements Serializable {
 
     public void setShapeName(String shapeName) {
         this.shapeName = shapeName;
+    }
+
+    public String getShapeImage() {
+        return shapeImage;
+    }
+
+    public void setShapeImage(String shapeImage) {
+        this.shapeImage = shapeImage;
     }
 
     public Collection<Diamondstb> getDiamondstbCollection() {

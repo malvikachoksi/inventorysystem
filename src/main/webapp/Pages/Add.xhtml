@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="assets" name="css/app.min.css"   />
+        <!-- ================== BEGIN core-css ================== -->
+        <!--<link href="assets/css/app.min.css" rel="stylesheet" />-->
+        <!-- ================== END core-css ================== -->
+    </h:head>
+    <h:body>
+        <a href="Diamond_Display.xhtml"></a>
+        <ui:composition template="../MasterTemplate.xhtml">
+            <ui:define name="content">
+                <div id="content" class="app-content" style="margin-top: 80px">
+                    <div class="card">
+                        <div class="card-body pb-2">
+                            <h:form>
+
+                                <f:view>
+
+
+                                    <h:form>
+                                        <!--<h1><h:outputText value="Create/Edit"/></h1>-->
+                                        <h:panelGrid columns="2">
+                                            <!--                                            <h:outputLabel value="DiamondId:" for="diamondId" />
+                                                                                        <h:inputText id="diamondId" value="#{diamondCDIBean.diamondstb.diamondId}" title="DiamondId" required="true" requiredMessage="The DiamondId field is required."/>-->
+                                            <h:outputLabel value="UserId:" for="userId" />
+                                            <h:inputText id="userId" value="#{diamondCDIBean.diamondstb.userId}" title="UserId" required="true" requiredMessage="The UserId field is required."/>
+                                            <!--                                            <h:outputLabel value="Certificate:" for="certificate" />
+                                                                                        <h:inputTextarea rows="4" cols="30" id="certificate" value="#{diamondCDIBean.diamondstb.certificate}" title="Certificate" required="true" requiredMessage="The Certificate field is required."/>
+                                                                                        <h:outputLabel value="Measurements:" for="measurements" />
+                                                                                        <h:inputTextarea rows="4" cols="30" id="measurements" value="#{diamondCDIBean.diamondstb.measurements}" title="Measurements" required="true" requiredMessage="The Measurements field is required."/>-->
+                                            <h:outputLabel value="Weigth:" for="weigth" />
+                                            <h:inputText id="weigth" value="#{diamondCDIBean.diamondstb.weigth}" title="Weigth" required="true" requiredMessage="The Weigth field is required."/>
+                                            <!--<h:outputLabel value="Image:" for="image" />-->
+<!--                                            <h:inputTextarea rows="4" cols="30" id="image" value="#{diamondCDIBean.diamondstb.image}" title="Image" required="true" requiredMessage="The Image field is required."/>
+                                            <h:outputLabel value="Price:" for="price" />-->
+                                            <h:inputText id="price" value="#{diamondCDIBean.diamondstb.price}" title="Price" required="true" requiredMessage="The Price field is required."/>
+                                            <h:outputLabel value="Availability:" for="availability" />
+                                            <h:inputText id="availability" value="#{diamondCDIBean.diamondstb.availability}" title="Availability" required="true" requiredMessage="The Availability field is required."/>
+                                            <h:outputLabel value="CompnayId:" for="compnayId" />
+                                            <h:selectOneMenu id="compnayId" value="#{diamondCDIBean.compnay_id}" title="CompnayId" required="true" requiredMessage="The CompnayId field is required.">
+                                                <f:selectItems value="#{diamondCDIBean.companiestbs}" var="d" itemLabel="#{d.compnayName}" itemValue="#{d.compnayId}" />
+                                            </h:selectOneMenu>
+                                            <h:outputLabel value="ColourId:" for="colourId" />
+                                            <h:selectOneMenu id="colourId" value="#{diamondCDIBean.colour_id}" title="ColourId" required="true" requiredMessage="The ColourId field is required.">
+                                                <f:selectItems value="#{diamondCDIBean.colortbs}" var="d" itemLabel="#{d.colorName}" itemValue="#{d.colorId}" />
+                                            </h:selectOneMenu>
+                                            <h:outputLabel value="PolishId:" for="polishId" />
+                                            <h:selectOneMenu id="polishId" value="#{diamondCDIBean.polish_id}" title="PolishId" required="true" requiredMessage="The PolishId field is required.">
+                                                <f:selectItems value="#{diamondCDIBean.polishestbs}" var="d" itemLabel="#{d.polisheName}" itemValue="#{d.polisheId}" />
+                                            </h:selectOneMenu>
+                                            <h:outputLabel value="ClarityId:" for="clarityId" />
+                                            <h:selectOneMenu id="clarityId" value="#{diamondCDIBean.clarity_id}" title="ClarityId" required="true" requiredMessage="The ClarityId field is required.">
+                                                <f:selectItems value="#{diamondCDIBean.claritiestbs}" var="d" itemLabel="#{d.claritiesName}" itemValue="#{d.claritiesId}" />
+                                            </h:selectOneMenu>
+                                            <h:outputLabel value="ShapeId:" for="shapeId" />
+                                            <h:selectOneMenu id="shapeId" value="#{diamondCDIBean.shape_id}" title="ShapeId" required="true" requiredMessage="The ShapeId field is required.">
+                                                <f:selectItems value="#{diamondCDIBean.shapetbs}" var="d" itemLabel="#{d.shapeName}" itemValue="#{d.shapeId}" />
+                                            </h:selectOneMenu>
+                                            <h:outputLabel value="CutId:" for="cutId" />
+                                            <h:selectOneMenu id="cutId" value="#{diamondCDIBean.cut_id}" title="CutId" required="true" requiredMessage="The CutId field is required.">
+                                                <f:selectItems value="#{diamondCDIBean.cutstbs}" var="d" itemLabel="#{d.cutName}" itemValue="#{d.cutId}" />
+                                            </h:selectOneMenu>
+                                            <h:outputLabel value="FluorescenceId:" for="fluorescenceId" />
+                                            <h:selectOneMenu id="fluorescenceId" value="#{diamondCDIBean.fluorescence_id}" title="FluorescenceId" required="true" requiredMessage="The FluorescenceId field is required.">
+                                                <f:selectItems value="#{diamondCDIBean.fluoresencestbs}" var="d" itemLabel="#{d.fluoresenceName}" itemValue="#{d.fluoresenceId}" />
+                                            </h:selectOneMenu>
+                                            <h:outputLabel value="Symmetriestb:" for="symmetriestb" />
+                                            <h:selectOneMenu id="symmetriestb" value="#{diamondCDIBean.symmetry_id}" title="Symmetriestb" >
+                                                <f:selectItems value="#{diamondCDIBean.symmetriestbs}" var="d" itemLabel="#{d.symmetrieName}" itemValue="#{d.symmetrieId}" />
+
+                                            </h:selectOneMenu>
+
+                                            <h:commandButton id="add_btn" action="#{diamondCDIBean.niharDiamond()}" value="Save">
+
+                                            </h:commandButton>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </f:view>
+                               
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author DELL
+ * @author hp
  */
 @Entity
 @Table(name = "extrainquirytb")

@@ -332,7 +332,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //        d.setCutId(cutstbId);
 //        d.setPolishId(polishestbId);
 //        d.setFluorescenceId(fluoresencestbId);
-        d.setSymmetriestb(symmetriestbId);
+//        d.setSymmetriestb(symmetriestbId);
         d.setWeigth(weigth);
         d.setPrice(price);
         d.setAvailability(availability);
@@ -345,7 +345,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //        cutstbId.getDiamondstbCollection().add(d);
 //        polishestbId.getDiamondstbCollection().add(d);
 //        fluoresencestbId.getDiamondstbCollection().add(d);
-        symmetriestbId.getDiamondstb();
+//        symmetriestbId.getDiamondstb();
 //
         em.persist(d);
         em.merge(symmetriestbId);
@@ -362,8 +362,151 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 
     }
 
+//    @Override
+//    public void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability) {
+//        System.err.println("----------Ejb--------Calll---------1---------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+//        Companiestb companiestbId = null;
+//        Shapetb shapetbId = null;
+//        Colortb colortbId = null;
+//        Claritiestb claritiestbId = null;
+//        Cutstb cutstbId = null;
+//        Polishestb polishestbId = null;
+//        Fluoresencestb fluoresencestbId = null;
+////        Symmetriestb symmetriestbId = null;
+//
+//        if (cutsId != null) {
+//            System.err.println("Id cuts---------" + cutsId);
+//            cutstbId = em.find(Cutstb.class, cutsId);
+//        } else {
+//            System.err.println("cuts Table Id null");
+//            // Handle the case when symmetryId is null
+//        }
+//
+//        if (compayId != null) {
+//            System.err.println("Id compnay---------" + compayId);
+//            companiestbId = em.find(Companiestb.class, compayId);
+//        } else {
+//            System.err.println("compnay Table Id null");
+//            // Handle the case when symmetryId is null
+//        }
+//
+//        if (shapeId != null) {
+//            shapetbId = em.find(Shapetb.class, shapeId);
+//        } else {
+//            System.err.println("shape Table Id null");
+//
+//            // Handle the case when symmetryId is null
+//        }
+//
+//        if (colourId != null) {
+//            colortbId = em.find(Colortb.class, colourId);
+//        } else {
+//            System.err.println("color Table Id null");
+//            // Handle the case when symmetryId is null
+//        }
+//
+//        if (clarityId != null) {
+//            claritiestbId = em.find(Claritiestb.class, clarityId);
+//        } else {
+//            System.err.println("clarity Table Id null");
+//
+//            // Handle the case when symmetryId is null
+//        }
+//        if (fluorescenceId != null) {
+//            fluoresencestbId = em.find(Fluoresencestb.class, fluorescenceId);
+//        } else {
+//            System.err.println("fluoresencestbId Table Id null");
+//
+//            // Handle the case when symmetryId is null
+//        }
+//        if (polishId != null) {
+//            polishestbId = em.find(Polishestb.class, polishId);
+//        } else {
+//            System.err.println("polish Table Id null");
+//
+//            // Handle the case when symmetryId is null
+//        }
+//        if (cutsId != null) {
+//            System.err.println("Custs Id " + cutsId);
+//            cutstbId = em.find(Cutstb.class, cutsId);
+//            System.err.println("Custs Id null of not " + cutstbId);
+//        } else {
+//            System.err.println("cuts Table Id null" + cutsId);
+//            // Handle the case when symmetryId is null
+//        }
+////        if (symmetryId != null) {
+////            symmetriestbId = em.find(Symmetriestb.class, symmetryId);
+////        } else {
+////            System.err.println("Symmetries Table Id null");
+////        }
+//        System.err.println("----------Ejb--------Calll-- 2----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+//
+//        Diamondstb d = new Diamondstb();
+//        d.setUserId(userId);
+//        d.setCompnayId(companiestbId);
+//        d.setShapeId(shapetbId);
+//        d.setColourId(colortbId);
+//        d.setClarityId(claritiestbId);
+//        d.setCutId(cutstbId);
+//        d.setPolishId(polishestbId);
+//        d.setFluorescenceId(fluoresencestbId);
+//        d.setSymmetryId(symmetryId);
+//        d.setWeigth(weigth);
+//        d.setPrice(price);
+//        d.setAvailability(availability);
+//        System.err.println("----------Ejb--------Calll-- 3----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+//
+//        System.err.println("=============persistes 2=============" + userId + weigth + price + availability + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth);
+//
+////        companiestbId.getDiamondstbCollection().add(d);
+////        shapetbId.getDiamondstbCollection().add(d);
+////        colortbId.getDiamondstbCollection().add(d);
+////        claritiestbId.getDiamondstbCollection().add(d);
+////        cutstbId.getDiamondstbCollection().add(d);
+////        polishestbId.getDiamondstbCollection().add(d);
+////        fluoresencestbId.getDiamondstbCollection().add(d);
+////        symmetriestbId.getDiamondstb();
+////
+//        em.persist(d);
+////        em.merge(symmetriestbId);
+//        System.err.println("=============persistes 2=============");
+//        em.merge(companiestbId);
+//        em.merge(shapetbId);
+//        em.merge(colortbId);
+//        em.merge(claritiestbId);
+//        em.merge(cutstbId);
+//        em.merge(fluoresencestbId);
+////        em.merge(symmetriestbId);
+//        System.err.println("=============marge 2=============");
+//        System.err.println("---------------------Diamond Add sucessfully2 --------------");
+//
+////-------------------------------------
+////         Diamondstb diamond = new Diamondstb();
+////        diamond.setUserId(userId);
+////        diamond.setCompnayId(em.find(Companiestb.class, compayId));
+////        diamond.setShapeId(em.find(Shapetb.class, shapeId));
+////        diamond.setColourId(em.find(Colortb.class, colourId));
+////        diamond.setClarityId(em.find(Claritiestb.class, clarityId));
+////        diamond.setCutId(em.find(Cutstb.class, cutsId));
+////        diamond.setPolishId(em.find(Polishestb.class, polishId));
+////        diamond.setFluorescenceId(em.find(Fluoresencestb.class, fluorescenceId));
+////        diamond.setSymmetryId(symmetryId);
+////        diamond.setWeigth(weigth);
+////        diamond.setPrice(price);
+////        diamond.setAvailability(availability);
+////                System.err.println("=============post data============="+userId+symmetryId+weigth+price+availability);
+////                System.err.println("=============post data foreign============="+compayId+polishId);
+////
+////        em.persist(diamond);
+////         System.err.println("=============marge=============");
+////        System.err.println("---------------------Diamond Add sucessfully --------------");
+//    }
+//    
+    
+    
+    
     @Override
-    public void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability) {
+    public void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId,Float weigth, Float price, Boolean availability) {
         System.err.println("----------Ejb--------Calll---------1---------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
         Companiestb companiestbId = null;
         Shapetb shapetbId = null;
@@ -372,7 +515,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         Cutstb cutstbId = null;
         Polishestb polishestbId = null;
         Fluoresencestb fluoresencestbId = null;
-//        Symmetriestb symmetriestbId = null;
+        Symmetriestb symmetriestbId = null;
 
         if (cutsId != null) {
             System.err.println("Id cuts---------" + cutsId);
@@ -434,11 +577,11 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
             System.err.println("cuts Table Id null" + cutsId);
             // Handle the case when symmetryId is null
         }
-//        if (symmetryId != null) {
-//            symmetriestbId = em.find(Symmetriestb.class, symmetryId);
-//        } else {
-//            System.err.println("Symmetries Table Id null");
-//        }
+        if (symmetryId != null) {
+            symmetriestbId = em.find(Symmetriestb.class, symmetryId);
+        } else {
+            System.err.println("Symmetries Table Id null");
+        }
         System.err.println("----------Ejb--------Calll-- 2----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
 
         Diamondstb d = new Diamondstb();
@@ -450,7 +593,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         d.setCutId(cutstbId);
         d.setPolishId(polishestbId);
         d.setFluorescenceId(fluoresencestbId);
-        d.setSymmetryId(symmetryId);
+        d.setSymmetryId(symmetriestbId);
         d.setWeigth(weigth);
         d.setPrice(price);
         d.setAvailability(availability);
@@ -476,7 +619,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         em.merge(claritiestbId);
         em.merge(cutstbId);
         em.merge(fluoresencestbId);
-//        em.merge(symmetriestbId);
+        em.merge(symmetriestbId);
         System.err.println("=============marge 2=============");
         System.err.println("---------------------Diamond Add sucessfully2 --------------");
 
@@ -497,11 +640,11 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //                System.err.println("=============post data============="+userId+symmetryId+weigth+price+availability);
 //                System.err.println("=============post data foreign============="+compayId+polishId);
 //
-//        em.persist(diamond);
+//        em.persist(diamond)
+;
 //         System.err.println("=============marge=============");
 //        System.err.println("---------------------Diamond Add sucessfully --------------");
     }
-    
 //    @RolesAllowed("admin")
     @Override
     public void Register_User(String group_name,String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
@@ -510,7 +653,6 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         Cities city = em.find(Cities.class, city_id);
         States state = em.find(States.class, state_id);
         Countries country = em.find(Countries.class, country_id);
-        String hashpassword = B.generate(password.toCharArray());
         Usertb usertb = new Usertb();
         usertb.setUsername(user_name);
         usertb.setPassword(B.generate(password.toCharArray()));
@@ -533,6 +675,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //        System.err.println("------------Group table data insert------" + B.generate(password.toCharArray()));
         em.persist(grouptb);
         System.err.println("------------User Register sucecessfully  group table-------------------");
+//Collection<Usertb> user=city.getUsertbCollection();
 
         
 
@@ -544,5 +687,27 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
     public Collection<Usertb> getalluser() {
         return em.createNamedQuery("Usertb.findAll").getResultList();
     }
+    
+    @Override
+    public Collection<Usertb> searchUser(String q) {
+        return em.createNamedQuery("Usertb.searchAll").setParameter("q", "%"+q+"%").getResultList();
+    }
+
+    @Override
+    public Collection<Countries> getAllCountrieses() {               
+                
+
+                Collection<Countries> cs= em.createNamedQuery("Countries.findAll").getResultList();
+                return cs;
+    }
+
+    @Override
+    public Countries getCountryById(int id) {
+        return em.find(Countries.class, id);
+    }
+
+    
+    
+    
 
 }

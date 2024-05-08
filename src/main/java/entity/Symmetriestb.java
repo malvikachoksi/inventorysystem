@@ -5,24 +5,25 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author DELL
+ * @author hp
  */
 @Entity
 @Table(name = "symmetriestb")
@@ -43,9 +44,8 @@ public class Symmetriestb implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "symmetrie_name")
     private String symmetrieName;
-    @JoinColumn(name = "symmetrie_id", referencedColumnName = "symmetry_id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Diamondstb diamondstb;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "symmetryId")
+    private Collection<Diamondstb> diamondstbCollection;
 
     public Symmetriestb() {
     }
@@ -75,12 +75,12 @@ public class Symmetriestb implements Serializable {
         this.symmetrieName = symmetrieName;
     }
 
-    public Diamondstb getDiamondstb() {
-        return diamondstb;
+    public Collection<Diamondstb> getDiamondstbCollection() {
+        return diamondstbCollection;
     }
 
-    public void setDiamondstb(Diamondstb diamondstb) {
-        this.diamondstb = diamondstb;
+    public void setDiamondstbCollection(Collection<Diamondstb> diamondstbCollection) {
+        this.diamondstbCollection = diamondstbCollection;
     }
 
     @Override

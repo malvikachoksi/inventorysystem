@@ -20,9 +20,7 @@ D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Co
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Symmetriestb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Diamondstb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Laboratoriestb.java
-D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\CDI\DiamondCDIBean.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Usertb.java
-D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\CDI\DropDown.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\ejb\DiamondSessionBeanLocal.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\com\mycompany\inventory_system\resources\JavaEE8Resource.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Cities.java
@@ -30,5 +28,4 @@ D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\ejb\Diamo
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Inquirytb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\Claritiestb.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\entity\States.java
-D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\CDI\UserCDIBean.java
 D:\Project-8\Inventory_Managment_System\Inventory_System\src\main\java\client\DiamondClientRest.java

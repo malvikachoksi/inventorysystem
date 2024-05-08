@@ -29,7 +29,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
+//import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 import record.KeepRecord;
 
 /**
@@ -73,10 +73,10 @@ public class loginBean implements  Serializable {
 
     public String login() {
         try {
-            Pbkdf2PasswordHashImpl B = new Pbkdf2PasswordHashImpl();
+//            Pbkdf2PasswordHashImpl B = new Pbkdf2PasswordHashImpl();
 
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-            System.err.println("login function " + B.generate(pwd.toCharArray()));
+//            System.err.println("login function " + B.generate(pwd.toCharArray()));
             System.err.println("login function " + " " + pwd + " " + "Hello");
             System.err.println("request" + getUname());
             HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -95,7 +95,7 @@ public class loginBean implements  Serializable {
 //                keepRecord.setUname(uname);
 //                keepRecord.setPwd(pwd);
                 
-                System.err.println("username" + uname + " " + B.generate(pwd.toCharArray()));
+//                System.err.println("username" + uname + " " + B.generate(pwd.toCharArray()));
                 System.err.println("role" + ctx.getCallerPrincipal().getName());
                 System.err.println("here" + ctx.isCallerInRole("customer"));
                 System.err.println("here" + ctx.isCallerInRole("admin"));

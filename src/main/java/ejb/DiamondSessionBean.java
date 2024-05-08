@@ -26,16 +26,17 @@ import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
+//import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 
-@DeclareRoles({"admin","inventory_user","customer"})
+@DeclareRoles({"admin", "inventory_user", "customer"})
 @Stateless
 public class DiamondSessionBean implements DiamondSessionBeanLocal {
 
     @PersistenceContext(unitName = "my_persistence_unit")
     EntityManager em;
-    Pbkdf2PasswordHashImpl B = new Pbkdf2PasswordHashImpl();
+//    Pbkdf2PasswordHashImpl B = new Pbkdf2PasswordHashImpl();
     //    ------------------------------------CATEGORY  TABLE----------------------------------------------------------
+
     @Override
     public Collection<Categorytb> get_all_category() {
         return em.createNamedQuery("Categorytb.findAll").getResultList();
@@ -501,19 +502,19 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //         System.err.println("=============marge=============");
 //        System.err.println("---------------------Diamond Add sucessfully --------------");
     }
-    
+
 //    @RolesAllowed("admin")
     @Override
-    public void Register_User(String group_name,String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
-        
-        
+    public void Register_User(String group_name, String user_name, String password, String first_name, String last_name, String phone_number, Integer user_type, String address, Integer city_id, Integer state_id, Integer country_id) {
+
         Cities city = em.find(Cities.class, city_id);
         States state = em.find(States.class, state_id);
         Countries country = em.find(Countries.class, country_id);
-        String hashpassword = B.generate(password.toCharArray());
+//        String hashpassword = B.generate(password.toCharArray());
         Usertb usertb = new Usertb();
         usertb.setUsername(user_name);
-        usertb.setPassword(B.generate(password.toCharArray()));
+//        usertb.setPassword(B.generate(password.toCharArray()));
+        usertb.setPassword(password);
         usertb.setFirstName(first_name);
         usertb.setLastName(last_name);
         usertb.setPhoneNumber(phone_number);
@@ -528,13 +529,11 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         Grouptb grouptb = new Grouptb();
         grouptb.setGroupname(group_name);
         grouptb.setUsername(usertb);
-        
+
         em.persist(usertb);
 //        System.err.println("------------Group table data insert------" + B.generate(password.toCharArray()));
         em.persist(grouptb);
         System.err.println("------------User Register sucecessfully  group table-------------------");
-
-        
 
         System.err.println("------------User Register sucecessfully-- user table-----------------");
 

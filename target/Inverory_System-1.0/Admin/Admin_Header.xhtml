@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet header</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <!-- ================== BEGIN core-css ================== -->
+        <link href="assets/css/app.min.css" rel="stylesheet" />
+        <!-- ================== END core-css ================== -->
+
+    </h:head>
+    <h:body>
+        <!-- BEGIN #app -->
+        <!--<div id="app" class="app">-->
+        <!-- BEGIN #header -->
+        <div id="header" class="app-header">
+            <!-- BEGIN mobile-toggler -->
+            <div class="mobile-toggler">
+                <button type="button" class="menu-toggler" data-toggle="sidebar-mobile">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+            <!-- END mobile-toggler -->
+
+            <!-- BEGIN brand -->
+            <div class="brand">
+                <div class="desktop-toggler">
+                    <button type="button" class="menu-toggler" data-toggle="sidebar-minify">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                </div>
+                <a href="index_admin.jsf" class="brand-logo">
+                    Admin  Diamond
+                    <!--<img src="assets/img/logo.png" alt="" height="20" />-->
+                </a>
+            </div>
+            <!-- END brand -->
+
+            <!-- BEGIN menu -->
+            <div class="menu">
+                <form class="menu-search" method="POST" name="header_search_form">
+                    <div class="menu-search-icon"><i class="fa fa-search"></i></div>
+                    <div class="menu-search-input">
+                        <input type="text" class="form-control" placeholder="Search ..." />
+                    </div>
+                </form>
+                <!--                <div class="menu-item dropdown">
+                                    <a href="#" data-toggle="dropdown" data-display="static" class="menu-link">
+                                        <div class="menu-icon"><i class="fa fa-bell nav-icon"></i></div>
+                                        <div class="menu-label">3</div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-notification">
+                                        <h6 class="dropdown-header text-gray-900 mb-1">Notifications</h6>
+                                        <a href="#" class="dropdown-notification-item">
+                                            <div class="dropdown-notification-icon">
+                                                <i class="fa fa-receipt fa-lg fa-fw text-success"></i>
+                                            </div>
+                                            <div class="dropdown-notification-info">
+                                                <div class="title">Your store has a new order for 2 items totaling $1,299.00</div>
+                                                <div class="time">just now</div>
+                                            </div>
+                                            <div class="dropdown-notification-arrow">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-notification-item">
+                                            <div class="dropdown-notification-icon">
+                                                <i class="far fa-user-circle fa-lg fa-fw text-muted"></i>
+                                            </div>
+                                            <div class="dropdown-notification-info">
+                                                <div class="title">3 new customer account is created</div>
+                                                <div class="time">2 minutes ago</div>
+                                            </div>
+                                            <div class="dropdown-notification-arrow">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-notification-item">
+                                            <div class="dropdown-notification-icon">
+                                                <img src="assets/img/icon/android.svg" alt="" width="26" />
+                                            </div>
+                                            <div class="dropdown-notification-info">
+                                                <div class="title">Your android application has been approved</div>
+                                                <div class="time">5 minutes ago</div>
+                                            </div>
+                                            <div class="dropdown-notification-arrow">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-notification-item">
+                                            <div class="dropdown-notification-icon">
+                                                <img src="assets/img/icon/paypal.svg" alt="" width="26" />
+                                            </div>
+                                            <div class="dropdown-notification-info">
+                                                <div class="title">Paypal payment method has been enabled for your store</div>
+                                                <div class="time">10 minutes ago</div>
+                                            </div>
+                                            <div class="dropdown-notification-arrow">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </div>
+                                        </a>
+                                        <div class="p-2 text-center mb-n1">
+                                            <a href="#" class="text-gray-800 text-decoration-none">See all</a>
+                                        </div>
+                                    </div>
+                                </div>-->
+                <div class="menu-item dropdown">
+                    <a href="#" data-toggle="dropdown" data-display="static" class="menu-link">
+                        <div class="menu-img online">
+                            <img src="assets/img/user/user.jpg" alt="" class="mw-100 mh-100 rounded-circle" />
+                        </div>
+                        <div class="menu-text">malvika@gmail.com</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right mr-lg-3">
+                        <a class="dropdown-item d-flex align-items-center" href="#">Edit Profile <i class="fa fa-user-circle fa-fw ml-auto text-gray-400 f-s-16"></i></a>
+                        <!--<a class="dropdown-item d-flex align-items-center" href="#">Inbox <i class="fa fa-envelope fa-fw ml-auto text-gray-400 f-s-16"></i></a>-->
+                        <!--<a class="dropdown-item d-flex align-items-center" href="#">Calendar <i class="fa fa-calendar-alt fa-fw ml-auto text-gray-400 f-s-16"></i></a>-->
+                        <!--<a class="dropdown-item d-flex align-items-center" href="#">Setting <i class="fa fa-wrench fa-fw ml-auto text-gray-400 f-s-16"></i></a>-->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item d-flex align-items-center" href="#">Log Out <i class="fa fa-toggle-off fa-fw ml-auto text-gray-400 f-s-16"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- END menu -->
+        </div>
+        <!-- END #header -->
+
+        <!-- BEGIN #sidebar -->
+        <div id="sidebar" class="app-sidebar" style="background-color: white;">
+            <!-- BEGIN scrollbar -->
+            <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+                <!-- BEGIN menu -->
+                <div class="menu">
+                    <div class="menu-header">Navigation</div>
+                    <div class="menu-item active">
+                        <a href="index_admin.jsf" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-laptop"></i></span>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="User_List.jsf" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-chart-pie"></i></span>
+                            <span class="menu-text">User</span>
+                        </a>
+                    </div>
+                    <!--                    <div class="menu-item has-sub">
+                                            <a href="#" class="menu-link">
+                                                <span class="menu-icon">
+                                                    <i class="fa fa-envelope"></i>
+                                                    <span class="menu-icon-label">6</span>
+                                                </span>
+                                                <span class="menu-text">Email</span>
+                                                <span class="menu-caret"><b class="caret"></b></span>
+                                            </a>
+                                            <div class="menu-submenu">
+                                                <div class="menu-item">
+                                                    <a href="email_inbox.html" class="menu-link">
+                                                        <span class="menu-text">Inbox</span>
+                                                    </a>
+                                                </div>
+                                                <div class="menu-item">
+                                                    <a href="email_compose.html" class="menu-link">
+                                                        <span class="menu-text">Compose</span>
+                                                    </a>
+                                                </div>
+                                                <div class="menu-item">
+                                                    <a href="email_detail.html" class="menu-link">
+                                                        <span class="menu-text">Detail</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                    <!--<div class="menu-divider"></div>-->
+                    <!--<div class="menu-header">Components</div>-->
+                    <div class="menu-item">
+                        <a href="Diamond_List.jsf" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-qrcode"></i></span>
+                            <span class="menu-text">Diamond</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="Customer_List.jsf" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-qrcode"></i></span>
+                            <span class="menu-text">Customer</span>
+                        </a>
+                    </div>
+                    <div class="menu-item has-sub">
+                        <a href="Category_List.jsf" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-heart"></i></span>
+                            <span class="menu-text">Category</span> 
+                            <span class="menu-caret"><b class="caret"></b></span>
+                        </a>
+                        <div class="menu-submenu">
+                            <div class="menu-item">
+                                <a href="Category_List.jsf" class="menu-link">
+                                    <span class="menu-text">List</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="Add_Category.jsf" class="menu-link">
+                                    <span class="menu-text">Insert</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-divider"></div>
+                    <div class="menu-header">Users</div>
+                    <div class="menu-item">
+                        <a href="Admin_Profile.jsf" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-user-circle"></i></span>
+                            <span class="menu-text">Profile</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="calendar.html" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-calendar"></i></span>
+                            <span class="menu-text">Calendar</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="calendar.html" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-toggle-off fa-fw ml-auto text-gray-400 f-s-16"></i></span>
+                            <span class="menu-text">Log Out</span>
+                        </a>
+                    </div>
+                    <!--                    <div class="menu-item">
+                                            <a href="settings.html" class="menu-link">
+                                                <span class="menu-icon"><i class="fa fa-cog"></i></span>
+                                                <span class="menu-text">Settings</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a href="helper.html" class="menu-link">
+                                                <span class="menu-icon"><i class="fa fa-question-circle"></i></span>
+                                                <span class="menu-text">Helper</span>
+                                            </a>
+                                        </div>-->
+                    <!--                    <div class="p-3 px-4 mt-auto hide-on-minified">
+                                            <a href="../../documentation/index.html" class="btn btn-block btn-secondary font-weight-600 rounded-pill">
+                                                <i class="fa fa-code-branch mr-1 ml-n1 opacity-5"></i> Documentation
+                                            </a>
+                                        </div>-->
+                </div>
+                <!-- END menu -->
+            </div>
+            <!-- END scrollbar -->
+
+            <!-- BEGIN mobile-sidebar-backdrop -->
+            <button class="app-sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></button>
+            <!-- END mobile-sidebar-backdrop -->
+        </div>
+        <!-- END #sidebar -->
+
+        <!-- BEGIN btn-scroll-top -->
+        <!--<a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>-->
+        <!-- END btn-scroll-top -->
+        <!--</div>-->
+        <!-- END #app -->
+        <!-- ================== BEGIN core-js ================== -->
+        <script src="assets/js/app.min.js"></script>
+        <!-- ================== END core-js ================== -->
+
+        <!-- ================== BEGIN page-js ================== -->
+        <script src="assets/plugins/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="assets/js/demo/dashboard.demo.js"></script>
+        <!-- ================== END page-js ================== -->
+    </h:body>
+</html>

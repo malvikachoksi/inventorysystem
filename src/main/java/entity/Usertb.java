@@ -5,7 +5,10 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +19,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author nihar
+ * @author DELL
  */
 @Entity
 @Table(name = "usertb")
@@ -51,7 +55,7 @@ public class Usertb implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 500)
+    @Size(min = 1, max = 10)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
@@ -82,6 +86,15 @@ public class Usertb implements Serializable {
     @Size(max = 65535)
     @Column(name = "profile_picture")
     private String profilePicture;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonbTransient
+    private Collection<Inquirytb> inquirytbCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonbTransient
+    private Collection<Extrainquirytb> extrainquirytbCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    @JsonbTransient
+    private Collection<Grouptb> grouptbCollection;
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
     @ManyToOne(optional = false)
     private Countries countryId;
@@ -91,6 +104,9 @@ public class Usertb implements Serializable {
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     @ManyToOne(optional = false)
     private Cities cityId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonbTransient
+    private Collection<Transactiontb> transactiontbCollection;
 
     public Usertb() {
     }
@@ -182,6 +198,30 @@ public class Usertb implements Serializable {
         this.profilePicture = profilePicture;
     }
 
+    public Collection<Inquirytb> getInquirytbCollection() {
+        return inquirytbCollection;
+    }
+
+    public void setInquirytbCollection(Collection<Inquirytb> inquirytbCollection) {
+        this.inquirytbCollection = inquirytbCollection;
+    }
+
+    public Collection<Extrainquirytb> getExtrainquirytbCollection() {
+        return extrainquirytbCollection;
+    }
+
+    public void setExtrainquirytbCollection(Collection<Extrainquirytb> extrainquirytbCollection) {
+        this.extrainquirytbCollection = extrainquirytbCollection;
+    }
+
+    public Collection<Grouptb> getGrouptbCollection() {
+        return grouptbCollection;
+    }
+
+    public void setGrouptbCollection(Collection<Grouptb> grouptbCollection) {
+        this.grouptbCollection = grouptbCollection;
+    }
+
     public Countries getCountryId() {
         return countryId;
     }
@@ -204,6 +244,14 @@ public class Usertb implements Serializable {
 
     public void setCityId(Cities cityId) {
         this.cityId = cityId;
+    }
+
+    public Collection<Transactiontb> getTransactiontbCollection() {
+        return transactiontbCollection;
+    }
+
+    public void setTransactiontbCollection(Collection<Transactiontb> transactiontbCollection) {
+        this.transactiontbCollection = transactiontbCollection;
     }
 
     @Override
@@ -230,5 +278,5 @@ public class Usertb implements Serializable {
     public String toString() {
         return "entity.Usertb[ userId=" + userId + " ]";
     }
-    
+
 }

@@ -88,12 +88,12 @@ public class JavaEE8Resource {
     }
 
     @POST
-    @Path("/add-diamond/{uid}/{compnyid}/{shapeid}/{colourid}/{clarityid}/{cutsid}/{polishid}/{fluorescenceId}/{sysmmetryid}/{weigth}/{price}/{avalibility}")
+    @Path("/add-diamond/{uid}/{compnyid}/{shapeid}/{colourid}/{clarityid}/{cutsid}/{polishid}/{fluorescenceId}/{sysmmetryid}/{weigth}/{price}/{avalibility}/{certificate}/{measurements}")
     public void diamond_add2(@PathParam("uid") Integer userId, @PathParam("compnyid") Integer compayId,
             @PathParam("shapeid") Integer shapeId, @PathParam("colourid") Integer colourId,
             @PathParam("clarityid") Integer clarityId, @PathParam("cutsid") Integer cutsId, @PathParam("polishid") Integer polishId,
             @PathParam("fluorescenceId") Integer fluorescenceId, @PathParam("sysmmetryid") Integer symmetryId, @PathParam("weigth") float weigth,
-            @PathParam("price") float price, @PathParam("avalibility") Boolean availability) {
+            @PathParam("price") float price, @PathParam("avalibility") Boolean availability,@PathParam("certificate") String certificate,@PathParam("measurements") String measurements) {
         System.err.println("add -diamond 22 ------rest api colour -------" + userId + colourId);
         System.err.println("add -diamond 22 ------rest api compnay-------" + userId + compayId);
         System.err.println("add -diamond 22 ------rest api clarity-------" + userId + clarityId);
@@ -103,8 +103,8 @@ public class JavaEE8Resource {
         System.err.println("add -diamond 22 ------rest api symmetryId-------" + symmetryId);
         System.err.println("add -diamond 22 ------rest api wiegth-------" + weigth);
         System.err.println("add -diamond 22 ------rest api shape-------" + shapeId);
-        System.err.println("Find Opration--weigth---" + weigth + "----price-----" + price + "-----avaliboility----" + availability);
-        ejb.insert_diamonds2(userId, compayId, shapeId, colourId, clarityId, cutsId, polishId, fluorescenceId, symmetryId, weigth, price, availability);
+        System.err.println("Find Opration--weigth---" + weigth + "----price-----" + price + "-----avaliboility----" + availability+"--cretificatue-----"+certificate+"------mm-"+measurements);
+        ejb.insert_diamonds2(userId, compayId, shapeId, colourId, clarityId, cutsId, polishId, fluorescenceId, symmetryId, weigth, price, availability,certificate,measurements);
 //        return Response.status(Response.Status.CREATED).entity(new customResponse("Success", "Inserted Successfully", true, ejb.diamonds_getall())).build();
     }
 

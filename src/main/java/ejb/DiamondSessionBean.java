@@ -333,7 +333,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //        d.setCutId(cutstbId);
 //        d.setPolishId(polishestbId);
 //        d.setFluorescenceId(fluoresencestbId);
-        d.setSymmetriestb(symmetriestbId);
+//        d.setSymmetriestb(symmetriestbId);
         d.setWeigth(weigth);
         d.setPrice(price);
         d.setAvailability(availability);
@@ -346,7 +346,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
 //        cutstbId.getDiamondstbCollection().add(d);
 //        polishestbId.getDiamondstbCollection().add(d);
 //        fluoresencestbId.getDiamondstbCollection().add(d);
-        symmetriestbId.getDiamondstb();
+//        symmetriestbId.getDiamondstb();
 //
         em.persist(d);
         em.merge(symmetriestbId);
@@ -360,12 +360,11 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         em.merge(symmetriestbId);
         System.err.println("=============marge=============");
         System.err.println("---------------------Diamond Add sucessfully --------------");
-
     }
 
     @Override
-    public void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability) {
-        System.err.println("----------Ejb--------Calll---------1---------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+    public void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability,String certificate,String measurements) {
+        System.err.println("----------Ejb--------Calll---------1---------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability +certificate+measurements);
         Companiestb companiestbId = null;
         Shapetb shapetbId = null;
         Colortb colortbId = null;
@@ -373,7 +372,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         Cutstb cutstbId = null;
         Polishestb polishestbId = null;
         Fluoresencestb fluoresencestbId = null;
-//        Symmetriestb symmetriestbId = null;
+        Symmetriestb symmetriestbId = null;
 
         if (cutsId != null) {
             System.err.println("Id cuts---------" + cutsId);
@@ -435,11 +434,11 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
             System.err.println("cuts Table Id null" + cutsId);
             // Handle the case when symmetryId is null
         }
-//        if (symmetryId != null) {
-//            symmetriestbId = em.find(Symmetriestb.class, symmetryId);
-//        } else {
-//            System.err.println("Symmetries Table Id null");
-//        }
+        if (symmetryId != null) {
+            symmetriestbId = em.find(Symmetriestb.class, symmetryId);
+        } else {
+            System.err.println("Symmetries Table Id null");
+        }
         System.err.println("----------Ejb--------Calll-- 2----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
 
         Diamondstb d = new Diamondstb();
@@ -451,11 +450,13 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         d.setCutId(cutstbId);
         d.setPolishId(polishestbId);
         d.setFluorescenceId(fluoresencestbId);
-        d.setSymmetryId(symmetryId);
+        d.setSymmetryId(symmetriestbId);
         d.setWeigth(weigth);
         d.setPrice(price);
         d.setAvailability(availability);
-        System.err.println("----------Ejb--------Calll-- 3----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability);
+        d.setCertificate(certificate);
+        d.setMeasurements(measurements);
+        System.err.println("----------Ejb--------Calll-- 3----------------" + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth + price + availability+certificate+measurements);
 
         System.err.println("=============persistes 2=============" + userId + weigth + price + availability + userId + compayId + shapeId + colourId + clarityId + cutsId + polishId + fluorescenceId + symmetryId + weigth);
 
@@ -477,7 +478,7 @@ public class DiamondSessionBean implements DiamondSessionBeanLocal {
         em.merge(claritiestbId);
         em.merge(cutstbId);
         em.merge(fluoresencestbId);
-//        em.merge(symmetriestbId);
+        em.merge(symmetriestbId);
         System.err.println("=============marge 2=============");
         System.err.println("---------------------Diamond Add sucessfully2 --------------");
 

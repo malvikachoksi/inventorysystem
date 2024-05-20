@@ -22,17 +22,14 @@ import javax.ejb.Local;
 @Local
 public interface DiamondSessionBeanLocal {
     
-    
-
         void Register_User(String group_name,String user_name,String password,String first_name,String last_name,String phone_number,Integer user_type,String address,Integer city_id,Integer state_id,Integer country_id);
 
         public Collection<Usertb> getalluser();
-
     
 //    ----------------------Diamond TABLE--------------------------------
     public Collection<Diamondstb> diamonds_getall();
     
-     void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability);
+     void insert_diamonds2(Integer userId, Integer compayId, Integer shapeId, Integer colourId, Integer clarityId, Integer cutsId, Integer polishId, Integer fluorescenceId, Integer symmetryId, Float weigth, Float price, Boolean availability,String certificate,String measurements);
     public void insert_diamonds(Integer userId, Integer symmetryId, Float weigth, Float price, Boolean availability);
 //
     public void delete_diamonds(Integer diamondId);

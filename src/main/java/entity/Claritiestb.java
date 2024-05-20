@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,6 +46,7 @@ public class Claritiestb implements Serializable {
     @Column(name = "clarities_name")
     private String claritiesName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clarityId")
+    @JsonbTransient
     private Collection<Diamondstb> diamondstbCollection;
 
     public Claritiestb() {

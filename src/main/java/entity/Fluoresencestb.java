@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,6 +46,7 @@ public class Fluoresencestb implements Serializable {
     @Column(name = "fluoresence_name")
     private String fluoresenceName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fluorescenceId")
+    @JsonbTransient
     private Collection<Diamondstb> diamondstbCollection;
 
     public Fluoresencestb() {

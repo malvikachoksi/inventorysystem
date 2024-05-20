@@ -20,14 +20,14 @@ import javax.ws.rs.core.Response;
  *        client.close();
  * </pre>
  *
- * @author nihar
+ * @author DELL
  */
 @DeclareRoles({"admin", "inventory_user"})
 public class DiamondClientRest {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/inventorysystem/resources";
+    private static final String BASE_URI = "http://localhost:8080/Inventory_System/resources";
 
     public DiamondClientRest() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -235,8 +235,9 @@ public class DiamondClientRest {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void diamond_add2(String uid, String compnyid, String shapeid, String colourid, String clarityid, String cutsid, String polishid, String fluorescenceId, String sysmmetryid, String weigth, String price, String avalibility) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("add-diamond/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}", new Object[]{uid, compnyid, shapeid, colourid, clarityid, cutsid, polishid, fluorescenceId, sysmmetryid, weigth, price, avalibility})).request().post(null);
+    public void diamond_add2(String uid, String compnyid, String shapeid, String colourid, String clarityid, String cutsid, String polishid, String fluorescenceId, String sysmmetryid, String weigth, String price, String avalibility, String certificate, String measurements) throws ClientErrorException {
+        System.err.println("--------Rest client call-----------"+uid);
+        webTarget.path(java.text.MessageFormat.format("add-diamond/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}/{12}/{13}", new Object[]{uid, compnyid, shapeid, colourid, clarityid, cutsid, polishid, fluorescenceId, sysmmetryid, weigth, price, avalibility, certificate, measurements})).request().post(null);
     }
 
     public void synmetries_update(Object requestEntity, String synmetries_id, String synmetries_name) throws ClientErrorException {

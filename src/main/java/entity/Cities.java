@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author nihar
+ * @author DELL
  */
 @Entity
 @Table(name = "cities")
@@ -32,23 +33,23 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Cities.findByCity", query = "SELECT c FROM Cities c WHERE c.city = :city")})
 public class Cities implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "city")
-    private String city;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "city_id")
     private Integer cityId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityId")
-    private Collection<Usertb> usertbCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "city")
+    private String city;
     @JoinColumn(name = "state_id", referencedColumnName = "state_id")
     @ManyToOne(optional = false)
     private States stateId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityId")
+    @JsonbTransient
+    private Collection<Usertb> usertbCollection;
 
     public Cities() {
     }
@@ -70,13 +71,12 @@ public class Cities implements Serializable {
         this.cityId = cityId;
     }
 
-
-    public Collection<Usertb> getUsertbCollection() {
-        return usertbCollection;
+    public String getCity() {
+        return city;
     }
 
-    public void setUsertbCollection(Collection<Usertb> usertbCollection) {
-        this.usertbCollection = usertbCollection;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public States getStateId() {
@@ -85,6 +85,14 @@ public class Cities implements Serializable {
 
     public void setStateId(States stateId) {
         this.stateId = stateId;
+    }
+
+    public Collection<Usertb> getUsertbCollection() {
+        return usertbCollection;
+    }
+
+    public void setUsertbCollection(Collection<Usertb> usertbCollection) {
+        this.usertbCollection = usertbCollection;
     }
 
     @Override
@@ -110,14 +118,6 @@ public class Cities implements Serializable {
     @Override
     public String toString() {
         return "entity.Cities[ cityId=" + cityId + " ]";
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
     
 }

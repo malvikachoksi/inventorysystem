@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+
+        <ui:include src="./Inventory_Header.xhtml"/>
+
+        <div style="padding-top: 50px">
+            <div id="content" class="app-content">
+
+                <div class="row justify-content-center">
+                    <!-- BEGIN col-10 -->
+                    <div class="col-xl-12">
+                        <!-- BEGIN row -->
+                        <div class="row">
+                            <!-- BEGIN col-9 -->
+                            <div class="col-xl-12">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Diamond</a></li>
+                                    <li class="breadcrumb-item active">Diamond Add</li>
+                                </ul>
+
+                                <!--                                <h1 class="page-header">
+                                                                    Form Elements <small>page header description goes here...</small>
+                                                                </h1>-->
+
+                                <hr class="mb-4" />
+                                <!-- BEGIN #formControls -->
+                                <!--<div id="formControls" class="mb-5">-->
+                                <h4>Diamond Add</h4>
+                                <!--<p>Textual form controls—like <code>&lt;input&gt;</code>s, <code>&lt;select&gt;</code>s, and <code>&lt;textarea&gt;</code>s—are styled with the .form-control class. Included are styles for general appearance, focus state, sizing, and more. Please read the <a href="https://getbootstrap.com/docs/4.4/components/forms/" target="_blank">official Bootstrap documentation</a> for the full list of options.</p>-->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form>
+
+                                            <f:view>
+
+                                                <h:form>
+                                                    <div class="row">
+                                                        <div class="col-xl-6">
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="UserId:" for="userId" />
+                                                                <h:inputText  class="form-control" id="userId" value="#{cDIbeanDiamond.userid}" title="UserId" required="true" requiredMessage="The UserId field is required."/>
+
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="Certificate:" for="certificate" />
+                                                                <h:inputTextarea  class="form-control" rows="4" cols="30" id="certificate" value="#{cDIbeanDiamond.certificate}" title="Certificate" />
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="Measurements:" for="measurements" />
+                                                                <h:inputTextarea  class="form-control" rows="4" cols="30" id="measurements" value="#{cDIbeanDiamond.measurements}" title="Measurements" />
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="Weigth:" for="weigth" />
+                                                                <h:inputText   class="form-control" id="weigth" value="#{cDIbeanDiamond.weigth}" title="Weigth" required="true" requiredMessage="The Weigth field is required."/>
+                                                            </div>                                                           
+                                                            <div class="form-group">
+
+
+
+                                                                <h:outputLabel value="Image:" for="image" />
+                                                                <h:inputTextarea  class="form-control" rows="4" cols="30" id="image" value="#{cDIbeanDiamond.image}" title="Image" />
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="Price:" for="price" />
+                                                                <h:inputText   class="form-control" id="price" value="#{cDIbeanDiamond.price}" title="Price" required="true" requiredMessage="The Price field is required."/>
+
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="Availability:" for="availability" />
+                                                                <h:inputText   class="form-control" id="availability" value="#{cDIbeanDiamond.avability}" title="Availability" required="true" requiredMessage="The Availability field is required."/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6">
+
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="CompnayId:" for="compnayId" />
+                                                                <h:selectOneMenu class="form-control" id="compnayId" value="#{cDIbeanDiamond.compnay_id}" title="CompnayId" required="true" requiredMessage="The CompnayId field is required.">
+                                                                    <f:selectItems  value="#{cDIbeanDiamond.companiestbs}" var="c" itemLabel="#{c.compnayName}" itemValue="#{c.compnayId}"/>
+                                                                </h:selectOneMenu>
+                                                            </div>
+
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="ColourId:" for="colourId" />
+                                                                <h:selectOneMenu  class="form-control" id="colourId" value="#{cDIbeanDiamond.colour_id}" title="ColourId" required="true" requiredMessage="The ColourId field is required.">
+                                                                    <f:selectItems class="form-control" value="#{cDIbeanDiamond.colortbs}" var="colour" itemLabel="#{colour.colorName}" itemValue="#{colour.colorId}" />
+                                                                </h:selectOneMenu>
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="CutId:" for="cutId" />
+                                                                <h:selectOneMenu  class="form-control" id="cutId" value="#{cDIbeanDiamond.cuts_id}" title="CutId" required="true" requiredMessage="The CutId field is required.">
+                                                                    <f:selectItems class="form-control" value="#{cDIbeanDiamond.cutstbs}" var="cuts" itemLabel="#{cuts.cutName}" itemValue="#{cuts.cutId}"/>
+                                                                </h:selectOneMenu>
+                                                            </div>
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="PolishId:" for="polishId" />
+                                                                <h:selectOneMenu  class="form-control" id="polishId" value="#{cDIbeanDiamond.polish_id}" title="PolishId" required="true" requiredMessage="The PolishId field is required.">
+                                                                    <f:selectItems class="form-control" value="#{cDIbeanDiamond.polishestbs}" var="polish" itemLabel="#{polish.polisheName}" itemValue="#{polish.polisheId}"/>
+                                                                </h:selectOneMenu>
+                                                            </div>
+
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="ClarityId:" for="clarityId" />
+                                                                <h:selectOneMenu  class="form-control" id="clarityId" value="#{cDIbeanDiamond.clarities_id}" title="ClarityId" required="true" requiredMessage="The ClarityId field is required.">
+                                                                    <f:selectItems class="form-control" value="#{cDIbeanDiamond.claritiestbs}" var="clarities" itemLabel="#{clarities.claritiesName}" itemValue="#{clarities.claritiesId}"/>
+                                                                </h:selectOneMenu>
+                                                            </div>
+
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="ShapeId:" for="shapeId" />
+                                                                <h:selectOneMenu  class="form-control" id="shapeId" value="#{cDIbeanDiamond.shape_id}" title="ShapeId" required="true" requiredMessage="The ShapeId field is required.">
+                                                                    <f:selectItems class="form-control" value="#{cDIbeanDiamond.shapetbs}" var="shape" itemLabel="#{shape.shapeName}" itemValue="#{shape.shapeId}"/>
+                                                                </h:selectOneMenu>
+                                                            </div>
+
+                                                            <div class="form-group">
+
+                                                                <h:outputLabel value="FluorescenceId:" for="fluorescenceId" />
+                                                                <h:selectOneMenu  class="form-control" id="fluorescenceId" value="#{cDIbeanDiamond.fluorescence_Id}" title="FluorescenceId" required="true" requiredMessage="The FluorescenceId field is required.">
+                                                                    <f:selectItems class="form-control" value="#{cDIbeanDiamond.fluoresencestbs}" var="flu" itemLabel="#{flu.fluoresenceName}" itemValue="#{flu.fluoresenceId}"/>
+                                                                </h:selectOneMenu>
+                                                            </div>
+                                                            <div class="form-group">
+
+
+                                                                <h:outputLabel value="SymmetryId:" for="symmetryId" />
+                                                                <h:selectOneMenu  class="form-control" id="symmetryId" value="#{cDIbeanDiamond.symmetry_id}" title="SymmetryId" required="true" requiredMessage="The SymmetryId field is required.">
+                                                                    <f:selectItems class="form-control" value="#{cDIbeanDiamond.symmetriestbs}" var="symm" itemLabel="#{symm.symmetrieName}" itemValue="#{symm.symmetrieId}"/>
+                                                                </h:selectOneMenu>
+
+                                                            </div>
+
+
+
+                                                        </div>
+                                                        <!--<div class="form-group">-->
+
+                                                            <h:commandButton class="btn btn-primary" action="#{cDIbeanDiamond.diamond_insert()}" value="Insert"/>
+                                                        <!--</div>-->
+                                                    </div>
+
+                                                </h:form>
+                                            </f:view>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </h:body>
+</html>

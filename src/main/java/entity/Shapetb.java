@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,7 +45,12 @@ public class Shapetb implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "shape_name")
     private String shapeName;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "shape_image")
+    private String shapeImage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shapeId")
+    @JsonbTransient
     private Collection<Diamondstb> diamondstbCollection;
 
     public Shapetb() {
@@ -73,6 +79,14 @@ public class Shapetb implements Serializable {
 
     public void setShapeName(String shapeName) {
         this.shapeName = shapeName;
+    }
+
+    public String getShapeImage() {
+        return shapeImage;
+    }
+
+    public void setShapeImage(String shapeImage) {
+        this.shapeImage = shapeImage;
     }
 
     public Collection<Diamondstb> getDiamondstbCollection() {

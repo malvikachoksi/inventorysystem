@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:include src="./Inventory_Header.xhtml"/>
+        <div style="padding-top: 50px">
+            <div id="content" class="app-content">
+
+                <div class="row justify-content-center">
+                    <!-- BEGIN col-10 -->
+                    <div class="col-xl-12">
+                        <!-- BEGIN row -->
+                        <div class="row">
+                            <!-- BEGIN col-9 -->
+                            <div class="col-xl-12">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Diamond</a></li>
+                                    <li class="breadcrumb-item active">Diamond Add</li>
+                                </ul>
+
+                                <!--                                <h1 class="page-header">
+                                                                    Form Elements <small>page header description goes here...</small>
+                                                                </h1>-->
+
+                                <hr class="mb-4" />
+                                <!-- BEGIN #formControls -->
+                                <!--<div id="formControls" class="mb-5">-->
+                                <h4>Diamond Add</h4>
+                                <!--<p>Textual form controls—like <code>&lt;input&gt;</code>s, <code>&lt;select&gt;</code>s, and <code>&lt;textarea&gt;</code>s—are styled with the .form-control class. Included are styles for general appearance, focus state, sizing, and more. Please read the <a href="https://getbootstrap.com/docs/4.4/components/forms/" target="_blank">official Bootstrap documentation</a> for the full list of options.</p>-->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form>
+                                            <h:form>
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group">
+                                                            <h:outputLabel value="UserId:" for="userId" />
+                                                            <h:inputText  class="form-control" id="userId" value="#{diamondCDIBean.diamondstb.userId}" title="UserId" required="true" requiredMessage="The UserId field is required."/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <h:outputLabel value="Certificate:" for="certificate" />
+                                                            <h:inputTextarea  class="form-control" rows="4" cols="30" id="certificate" value="#{diamondCDIBean.diamondstb.certificate}" title="Certificate" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <h:outputLabel value="Measurements:" for="measurements" />
+                                                            <h:inputTextarea  class="form-control" rows="4" cols="30" id="measurements" value="#{diamondCDIBean.diamondstb.measurements}" title="Measurements" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <h:outputLabel value="Weigth:" for="weigth" />
+                                                            <h:inputText  class="form-control" id="weigth" value="#{diamondCDIBean.diamondstb.weigth}" title="Weigth" required="true" requiredMessage="The Weigth field is required."/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <h:outputLabel value="Image:" for="image" />
+                                                            <h:inputTextarea  class="form-control" rows="4" cols="30" id="image" value="#{diamondCDIBean.diamondstb.image}" title="Image" />  
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <h:outputLabel value="Price:" for="price" />
+                                                            <h:inputText  class="form-control" id="price" value="#{diamondCDIBean.diamondstb.price}" title="Price" required="true" requiredMessage="The Price field is required."/>
+                                                        </div>
+                                                          <div class="form-group">
+                                                            <h:outputLabel value="symmetry" for="sym" />
+                                                            <h:inputText  class="form-control" id="sym" value="#{diamondCDIBean.diamondstb.symmetryId}" title="Price" required="true" requiredMessage="The Price field is required."/>
+                                                        </div>
+                                                         <div class="form-group">
+                                                            <h:outputLabel value="clarityId" for="clarityId" />
+                                                            <h:inputText  class="form-control" id="cl" value="#{diamondCDIBean.diamondstb.clarityId}" title="Price" required="true" requiredMessage="The Price field is required."/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-auto" >
+                                                    <h:commandButton action="#{diamondCDIBean.malvika()}" value="Add Diamond"  id="save" >
+                                                    </h:commandButton>
+                                                </div>
+                                            </h:form>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,11 +14,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,7 +31,6 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name = "Companiestb.findAll", query = "SELECT c FROM Companiestb c"),
     @NamedQuery(name = "Companiestb.findByCompnayId", query = "SELECT c FROM Companiestb c WHERE c.compnayId = :compnayId"),
-    @NamedQuery(name = "Companiestb.findByCompnayName", query = "SELECT c FROM Companiestb c WHERE c.compnayName = :compnayName"),
     @NamedQuery(name = "Companiestb.findByStateId", query = "SELECT c FROM Companiestb c WHERE c.stateId = :stateId"),
     @NamedQuery(name = "Companiestb.findByCityId", query = "SELECT c FROM Companiestb c WHERE c.cityId = :cityId")})
 public class Companiestb implements Serializable {
@@ -41,6 +43,8 @@ public class Companiestb implements Serializable {
     private Integer compnayId;
     @Basic(optional = false)
     @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "compnay_name")
     private String compnayName;
     @Basic(optional = false)
@@ -52,6 +56,7 @@ public class Companiestb implements Serializable {
     @Column(name = "city_id")
     private int cityId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "compnayId")
+    @JsonbTransient
     private Collection<Diamondstb> diamondstbCollection;
 
     public Companiestb() {
@@ -76,7 +81,6 @@ public class Companiestb implements Serializable {
         this.compnayId = compnayId;
     }
 
-    
     public String getCompnayName() {
         return compnayName;
     }

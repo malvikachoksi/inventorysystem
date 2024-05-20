@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,6 +46,7 @@ public class Colortb implements Serializable {
     @Column(name = "color_name")
     private String colorName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "colourId")
+    @JsonbTransient
     private Collection<Diamondstb> diamondstbCollection;
 
     public Colortb() {
